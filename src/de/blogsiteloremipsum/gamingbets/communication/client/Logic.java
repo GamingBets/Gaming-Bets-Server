@@ -1,6 +1,6 @@
 package de.blogsiteloremipsum.gamingbets.communication.client;
 
-import java.util.Date;
+import java.sql.Date;
 
 import de.blogsiteloremipsum.gamingbets.classes.Bet;
 import de.blogsiteloremipsum.gamingbets.classes.Ticket;
@@ -26,8 +26,8 @@ public class Logic implements ClientMethods {
     }
 
     @Override
-    public boolean login(User user) {
-        return server.login(user);
+    public boolean login(String userName, String password) {
+        return server.login(userName, password);
     }
 
     @Override

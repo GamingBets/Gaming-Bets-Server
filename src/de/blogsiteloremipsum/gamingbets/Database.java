@@ -1,11 +1,12 @@
 package de.blogsiteloremipsum.gamingbets;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Date;
+
 
 import de.blogsiteloremipsum.gamingbets.classes.User;
 
@@ -50,10 +51,11 @@ public class Database {
 
             String query = "INSERT INTO `user` (`iD`, `userName`, `password`, `bets`, `loggedIn`, `admin`, `active`, `dob`, `email`) VALUES (NULL, '"+userName+"', '"+password+"', 'nichts', '0', '1', '1', '2015-11-18', 'hey@nichts');";
             Statement stmt = con.createStatement();
-            boolean succ = stmt.execute(query);
+            boolean succ = stmt.execute(query, Statement.EXECUTE_FAILED);
+
             stmt.close();
             con.close();
-            return succ;
+            return !succ;
 
         }catch(Exception e){
             e.printStackTrace();
@@ -70,6 +72,7 @@ public class Database {
         boolean admin=false;
         boolean active=true;
         String email="";
+        Date dob = new Date(100);
 
         Connection con = connect();
         try{
@@ -83,8 +86,9 @@ public class Database {
                 admin = rs.getBoolean("admin");
                 active = rs.getBoolean("active");
                 email = rs.getString("email");
+                dob = rs.getDate("dob");
             }
-            return new User(id, uName, email, password, bets, admin, active);
+            return new User(id, uName, email, password, bets, admin, active, dob );
         }catch (Exception e){
             e.printStackTrace();
         }return null;

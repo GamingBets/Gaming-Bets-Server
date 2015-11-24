@@ -11,11 +11,11 @@ import de.blogsiteloremipsum.gamingbets.classes.User;
  */
 public interface ClientMethods {
 
-    boolean login(User user);
+    boolean login(String userName, String password);
 
     boolean logout(User user);
 
-    boolean register(String username, String email, String pw, Date dob);
+    boolean register(String username, String email, String pw, java.sql.Date dob);
 
     boolean edit(User user);
 

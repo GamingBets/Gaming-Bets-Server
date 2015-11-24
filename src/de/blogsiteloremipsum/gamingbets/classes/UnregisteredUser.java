@@ -1,12 +1,16 @@
 package de.blogsiteloremipsum.gamingbets.classes;
 
-import java.util.Date;
+
+import java.io.Serializable;
+import java.sql.Date;
 import java.util.List;
 
 /**
  * Created by Felix on 17.11.2015.
  */
-public class UnregisteredUser {
+public class UnregisteredUser implements Serializable {
+
+    private static final long serialVerssionUID = 1L;
 
     private String userName;
     private String email;

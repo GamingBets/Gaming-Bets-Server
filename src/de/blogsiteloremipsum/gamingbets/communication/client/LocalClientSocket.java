@@ -5,9 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
-import java.net.InetAddress;
 import java.net.Socket;
-import java.util.Date;
+import java.sql.Date;
+
 
 import de.blogsiteloremipsum.gamingbets.classes.Bet;
 import de.blogsiteloremipsum.gamingbets.classes.Ticket;
@@ -22,13 +22,14 @@ import de.blogsiteloremipsum.gamingbets.communication.communication_types;
 public class LocalClientSocket implements ClientMethods{
 
     public final static int port = 4567;
-    //TODO right ip
     private final static String serverAdress = "localhost";
 
     public static void main(String args[]){
 
         LocalClientSocket lc = new LocalClientSocket();
-        System.out.println(lc.register("Felix", "felix@cool.de", "1234", null));
+        System.out.println(lc.login("Andre", "1234"));
+       // System.out.println(lc.register("Tim", "hey", "drlöl", null));
+       // System.out.println(lc.placeBet(new Bet(1, null, true, 0, "hi" )));
 
 
     }
@@ -36,8 +37,6 @@ public class LocalClientSocket implements ClientMethods{
     public boolean send(CommunicationPackage cp){
 
         String response = "";
-
-
 
         try {
 
@@ -55,31 +54,16 @@ public class LocalClientSocket implements ClientMethods{
             socket.close();
 
         } catch (IOException e) {
-
             e.printStackTrace();
         }
-
-/*
-
-        try {
-            if (InetAddress.getByName(serverAdress).isReachable(5000)) {
-                System.out.println(serverAdress + " ist erreichbar!");
-
-            }else{
-                System.out.println(serverAdress + " ist NICHT erreichbar!");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        */
 
         //TODO Case if response is not "done", String contains Error Message, handling of this case needs implementation
         return response.equalsIgnoreCase("done");
     }
 
     @Override
-    public boolean login(User user) {
-       return send(new CommunicationPackage(communication_types.LOGIN, user, null, null, null));
+    public boolean login(String userName, String password) {
+       return send(new CommunicationPackage(communication_types.LOGIN, new User(userName, password), null, null, null));
     }
 
     @Override

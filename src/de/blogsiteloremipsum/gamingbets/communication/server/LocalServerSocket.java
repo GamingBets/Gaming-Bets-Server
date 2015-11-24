@@ -46,7 +46,7 @@ public class LocalServerSocket implements ServerMethods{
                System.out.println("ClientThread gefunden!");
                Thread thread = new Thread(new ClientThread(clientsocket));
                thread.start();
-               System.out.println("Thread gestarte!");
+
 
 
            }catch(IOException e){
