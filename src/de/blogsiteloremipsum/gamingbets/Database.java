@@ -53,7 +53,7 @@ public class Database {
         Connection con = connect();
         try {
 
-            String query = "INSERT INTO `user` (`iD`, `userName`, `password`, `bets`, `loggedIn`, `admin`, `active`, `dob`, `email`) VALUES (NULL, '"+userName+"', '"+password+"', 'nichts', '0', '1', '1', '2015-11-18', 'hey@nichts');";
+            String query = "INSERT INTO `user` ( `userName`, `password`, `bets`, `loggedIn`, `admin`, `active`, `dob`, `email`) VALUES ('"+userName+"', '"+password+"', 'nichts', '0', '1', '1', '2015-11-18', 'hey@nichts');";
             Statement stmt = con.createStatement();
             boolean succ = stmt.execute(query, Statement.EXECUTE_FAILED);
 
