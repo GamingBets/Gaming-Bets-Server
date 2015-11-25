@@ -4,7 +4,6 @@ package de.blogsiteloremipsum.gamingbets.classes;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.List;
 
 /**
  * Created by quint_000 on 12.11.2015.
