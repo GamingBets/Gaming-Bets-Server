@@ -25,21 +25,17 @@ public class CommunicationPackageHandler {
          * Returns "done" when Succesfully done Transaction
          * Otherwise returns Error as String
          */
-
         switch (cp.getType()){
             case EDIT:
                 break;
             case EDITADMIN:
                 break;
-            case LOGIN:
-             
-                login();
-                break;
+            case LOGIN:             
+                return login();
             case LOGOUT:
                 break;
             case REGISTER:
-                register();
-                break;
+                return register();
             default:
                 return "kein gültiger Package Type";
         }
@@ -74,7 +70,7 @@ public class CommunicationPackageHandler {
             e.printStackTrace();
         }
         if(generatedPassword.equals(userDB.getPassword())){
-            return "Login erfolgreich";
+            return "done";
         }
         return "Login fehlgeschlagen";
 
@@ -109,7 +105,7 @@ public class CommunicationPackageHandler {
         System.out.println(test);
         if(test){
             System.out.println("Erfolgreich registriert");
-            return "Erfolgreich registriert";
+            return "done";
         }
         System.out.println("nicht Erfolgreich registriert");
         return "nicht Erfolgreich registriert";

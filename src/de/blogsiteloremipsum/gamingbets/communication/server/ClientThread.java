@@ -28,6 +28,7 @@ public class ClientThread implements Runnable{
             ObjectInputStream in = new ObjectInputStream(clientsocket.getInputStream());
             CommunicationPackage cp = (CommunicationPackage) in.readObject();
 
+            
 
             //Handle Package and return result
             CommunicationPackageHandler cph = new CommunicationPackageHandler(cp);

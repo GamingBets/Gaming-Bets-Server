@@ -20,10 +20,13 @@ public class Database {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
 
             String name = "GamingBets";
-            String user = "root";
-            String password = "gamebet";
+            String user = "gamebet";
+            String password = "gamebetdb";
 
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/" + name + "?user=" + user + "?password=" + password);
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost/" + name,
+                    user,
+                    password);
             return con;
 
         }
