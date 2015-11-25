@@ -1,7 +1,5 @@
 package de.blogsiteloremipsum.gamingbets.classes;
 
-
-
 import java.io.Serializable;
 import java.sql.Date;
 
@@ -10,10 +8,7 @@ import java.sql.Date;
  */
 public class User implements Serializable {
 
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 6529685098267757690L;
 
 	private int ID;
     private String userName;
