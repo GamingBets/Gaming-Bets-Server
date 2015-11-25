@@ -15,10 +15,11 @@ import java.net.Socket;
 public class LocalServerSocket implements ServerMethods{
 
     public final static int port = 4567;
-    private PrintWriter out;
-    private BufferedReader in;
+    @SuppressWarnings("unused")
+	private PrintWriter out;
+    @SuppressWarnings("unused")
+	private BufferedReader in;
     private boolean exit;
-    private int clientNumber;
     private ServerSocket serverSocket;
 
 
@@ -27,7 +28,6 @@ public class LocalServerSocket implements ServerMethods{
     public LocalServerSocket(){
 
         exit = false;
-        clientNumber = 0;
 
         try {
             serverSocket = new ServerSocket(port);
@@ -59,7 +59,8 @@ public class LocalServerSocket implements ServerMethods{
 
     public static void main(String args[]){
 
-        LocalServerSocket server = new LocalServerSocket();
+        @SuppressWarnings("unused")
+		LocalServerSocket server = new LocalServerSocket();
     }
 
    public boolean isExit() {
