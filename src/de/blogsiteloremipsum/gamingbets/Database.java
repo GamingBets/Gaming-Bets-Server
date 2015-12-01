@@ -61,9 +61,7 @@ public class Database {
 		    preparedStmt.setString(2, user.getEmail());
 		    preparedStmt.setDate(3, user.getDob());
 		    preparedStmt.setString(4, user.getUserName());
-    	 
-    	      // execute the java preparedstatement
-    	      preparedStmt.executeUpdate();
+		    preparedStmt.executeUpdate();
     		return true;
     		
     	}catch(Exception e){
@@ -150,7 +148,7 @@ public class Database {
         }return null;
     }
 
-    public ArrayList<User> getAllUser(){
+    public static ArrayList<User> getAllUser(){
     	Connection con = connect();
     	User u;
     	ArrayList<User> users = new ArrayList<User>();

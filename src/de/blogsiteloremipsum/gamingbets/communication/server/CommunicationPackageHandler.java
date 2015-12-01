@@ -27,21 +27,32 @@ public class CommunicationPackageHandler {
          */
         switch (cp.getType()){
             case EDIT:
-                break;
+                return edit();
             case EDITADMIN:
-                break;
+            	return editAdmin();
             case LOGIN:             
                 return login();
             case LOGOUT:
                 break;
             case REGISTER:
                 return register();
+                
             default:
                 return "kein gültiger Package Type";
         }
         return "done";
     }
 
+    public String edit(){
+    	if(Database.edit(cp.getUser()))
+    	return "done";
+    	else return "not done";
+    }
+    
+    public String editAdmin(){
+    	cp.setAllUser(Database.getAllUser());
+    	return "done";
+    }
     public String login(){
         
         User user = cp.getUser();

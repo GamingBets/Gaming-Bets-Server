@@ -1,6 +1,7 @@
 package de.blogsiteloremipsum.gamingbets.communication;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import de.blogsiteloremipsum.gamingbets.classes.Bet;
 import de.blogsiteloremipsum.gamingbets.classes.Ticket;
@@ -30,16 +31,26 @@ public class CommunicationPackage implements Serializable{
     private Bet bet;
     private Ticket ticket;
     private UnregisteredUser unregisteredUser;
+    private ArrayList<User> allUser;
 
-    public CommunicationPackage(communication_types type, User user, Bet bet, Ticket ticket, UnregisteredUser unregisteredUser) {
+    public CommunicationPackage(communication_types type, User user, Bet bet, Ticket ticket, UnregisteredUser unregisteredUser, ArrayList<User> allUUser) {
         this.type = type;
         this.user = user;
         this.bet = bet;
         this.ticket = ticket;
         this.unregisteredUser = unregisteredUser;
+        this.allUser = allUser;
     }
+    
+    public ArrayList<User> getAllUser() {
+		return allUser;
+	}
 
-    public static long getSerialVerssionUID() {
+	public void setAllUser(ArrayList<User> allUser) {
+		this.allUser = allUser;
+	}
+
+	public static long getSerialVerssionUID() {
         return getSerialVerssionUID();
     }
 
