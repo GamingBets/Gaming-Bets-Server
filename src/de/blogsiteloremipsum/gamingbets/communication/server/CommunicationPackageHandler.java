@@ -36,13 +36,19 @@ public class CommunicationPackageHandler {
                 break;
             case REGISTER:
                 return register();
-                
+            case POSTTICKET:
+            	return postTicket();
             default:
                 return "kein gültiger Package Type";
         }
         return "done";
     }
 
+    public String postTicket(){
+    	if(Database.postTicket(cp.getTicket()))
+    	return "done";
+    	else return "not done";
+    }
     public String edit(){
     	if(Database.edit(cp.getUser()))
     	return "done";

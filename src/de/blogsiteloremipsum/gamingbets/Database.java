@@ -10,6 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.blogsiteloremipsum.gamingbets.classes.Ticket;
 import de.blogsiteloremipsum.gamingbets.classes.UnregisteredUser;
 import de.blogsiteloremipsum.gamingbets.classes.User;
 
@@ -34,36 +35,45 @@ public class Database {
             return con;
 
         }
-        catch (SQLException e) {
+        catch (Exception e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        catch (IllegalAccessException e){
-            e.printStackTrace();
-        }
-        catch (InstantiationException e){
             e.printStackTrace();
         }
         return null;
     }
     
+    public static boolean postTicket(Ticket ticket){
+    	Connection con = connect();
+    	try{
+    		String query = "INSERT INTO 'ticket' ('userID', 'content') VALUES(?, ?)";
+    		PreparedStatement stmt = con.prepareStatement(query);
+    		stmt.setInt(1, ticket.getUser().getID());
+    		stmt.setString(2, ticket.getContent());
+    		stmt.executeQuery();
+    		stmt.close();
+    		con.close();
+    		return true;
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}
+    	return false;
+    }
     public static boolean edit(User user){
     	Connection con = connect();
     	try{
     		String query = "UPDATE 'user' SET ('password' = ?, 'email' = ?, 'dob' = ? )WHERE  'userName'= ?";
-		    PreparedStatement preparedStmt = con.prepareStatement(query);
-		    preparedStmt.setString   (1, user.getPassword());
-		    preparedStmt.setString(2, user.getEmail());
-		    preparedStmt.setDate(3, user.getDob());
-		    preparedStmt.setString(4, user.getUserName());
-		    preparedStmt.executeUpdate();
+		    PreparedStatement stmt = con.prepareStatement(query);
+		    stmt.setString   (1, user.getPassword());
+		    stmt.setString(2, user.getEmail());
+		    stmt.setDate(3, user.getDob());
+		    stmt.setString(4, user.getUserName());
+		    stmt.executeUpdate();
+		    
+		    stmt.close();
+		    con.close();
+		    
     		return true;
-    		
+    		    		
     	}catch(Exception e){
     		e.printStackTrace();
     	}
@@ -81,6 +91,9 @@ public class Database {
     		if(rs.next()){
     			return true;
     		}
+    		rs.close();
+    		stmt.close();
+    		con.close();
     		return false;
     	}catch(Exception e){
     		e.printStackTrace();

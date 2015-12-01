@@ -13,18 +13,29 @@ public class Ticket {
     private int status;
     private Date date;
     private List<User> processors;
-    private List<String[]> messages;
+    private String content;
 
-    public Ticket(int ID, User user, int status, Date date, List<User> processors, List<String[]> messages) {
+    public Ticket(int ID, User user, int status, Date date, List<User> processors, String content) {
         this.ID = ID;
         this.user = user;
         this.status = status;
         this.date = date;
         this.processors = processors;
-        this.messages = messages;
+        this.content = content;
     }
 
-    public int getID() {
+    
+    public String getContent() {
+		return content;
+	}
+
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+
+	public int getID() {
         return ID;
     }
 
