@@ -101,7 +101,7 @@ public class CommunicationPackageHandler {
         {
             e.printStackTrace();
         }
-        boolean test = Database.register(user.getUserName(), generatedPassword, user.getDob(), false);
+        boolean test = Database.register(user);
         System.out.println(test);
         if(test){
             System.out.println("Erfolgreich registriert");
