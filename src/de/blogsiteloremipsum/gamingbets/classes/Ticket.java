@@ -9,15 +9,16 @@ import java.util.List;
 public class Ticket {
 
     private int ID;
-    private User user;
+    private int userID;
     private int status;
     private Date date;
     private List<User> processors;
     private String content;
+    private String email;
 
-    public Ticket(int ID, User user, int status, Date date, List<User> processors, String content) {
+    public Ticket(int ID, int userID, int status, Date date, List<User> processors, String content) {
         this.ID = ID;
-        this.user = user;
+        this.userID = userID;
         this.status = status;
         this.date = date;
         this.processors = processors;
