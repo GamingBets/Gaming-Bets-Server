@@ -149,6 +149,7 @@ public class CommunicationPackageHandler {
             }
             //Get complete hashed password in hex format
             generatedPassword = sb.toString();
+            user.setPassword(generatedPassword);
         }
         catch (NoSuchAlgorithmException e)
         {

@@ -185,7 +185,7 @@ public class Database {
         Connection con = connect();
         try {
 
-            String query = "INSERT INTO `user` ( `userName`, `password`, `bets`, `loggedIn`, `admin`, `active`, `dob`, `email` 'score') VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO `user` ( `userName`, `password`, `bets`, `loggedIn`, `admin`, `active`, `dob`, `email`, `score`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = con.prepareStatement(query);
             stmt.setString(1, user.getUserName());
             stmt.setString(2, user.getPassword());
