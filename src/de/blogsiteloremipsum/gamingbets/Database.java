@@ -197,12 +197,12 @@ public class Database {
             stmt.setString(8, user.getEmail());
             stmt.setInt(9, 0);
             
-            boolean succ = stmt.execute(query, Statement.EXECUTE_FAILED);
+            stmt.execute();
 
             stmt.close();
             con.close();
             
-            return !succ;
+            return true;
 
         }catch(Exception e){
             e.printStackTrace();
