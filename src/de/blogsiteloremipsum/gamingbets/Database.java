@@ -229,7 +229,7 @@ public class Database {
             PreparedStatement stmt = con.prepareStatement(query);
             stmt.setString(1, userName);
             
-            ResultSet rs = stmt.executeQuery(query);
+            ResultSet rs = stmt.executeQuery();
             while (rs.next()){
                 id = rs.getInt("iD");
                 password = rs.getString("password");
