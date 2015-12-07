@@ -7,6 +7,7 @@ import de.blogsiteloremipsum.gamingbets.Database;
 import de.blogsiteloremipsum.gamingbets.classes.UnregisteredUser;
 import de.blogsiteloremipsum.gamingbets.classes.User;
 import de.blogsiteloremipsum.gamingbets.communication.CommunicationPackage;
+import de.blogsiteloremipsum.gamingbets.communication.communication_types;
 
 /**
  * Created by Felix on 17.11.2015.
@@ -43,7 +44,42 @@ public class CommunicationPackageHandler {
         }
         return "done";
     }
+    
+    public CommunicationPackage handleObject(){
+    	switch (cp.getType()){
+        case SENDLEADERBOARD:
+            return getLeaderboard();
+        case SENDTICKETS:
+        	return getTickets();
+        case SENDUSERS:             
+            return getUsers();
+        default:
+            return null;
+    	}
+    }
 
+    public CommunicationPackage getUser(){
+    	CommunicationPackage cp = new CommunicationPackage(communication_types.SENDUSER, null, null, null, null, null);
+    	cp.setUser(Database.getUser(this.cp.getUser().getUserName()));
+    	return cp;
+    }
+    public CommunicationPackage getLeaderboard(){
+    	CommunicationPackage cp = new CommunicationPackage(communication_types.SENDLEADERBOARD, null, null, null, null, null);
+    	cp.setAllUser(Database.getScores());
+    	return cp;
+    }
+    
+    public CommunicationPackage getTickets(){
+    	CommunicationPackage cp = new CommunicationPackage(communication_types.SENDTICKETS, null, null, null, null, null);
+    	cp.setAllTickets(Database.getTickets());
+    	return cp;
+    }
+    
+    public CommunicationPackage getUsers(){
+    	CommunicationPackage cp = new CommunicationPackage(communication_types.SENDUSERS, null, null, null, null, null);
+    	cp.setAllUser(cp.getAllUser());
+    	return cp;
+    }
     public String postTicket(){
     	if(Database.postTicket(cp.getTicket()))
     	return "done";

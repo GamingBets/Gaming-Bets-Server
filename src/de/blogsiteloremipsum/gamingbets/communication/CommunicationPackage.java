@@ -32,6 +32,7 @@ public class CommunicationPackage implements Serializable{
     private Ticket ticket;
     private UnregisteredUser unregisteredUser;
     private ArrayList<User> allUser;
+    private ArrayList<Ticket> allTickets;
 
     public CommunicationPackage(communication_types type, User user, Bet bet, Ticket ticket, UnregisteredUser unregisteredUser, ArrayList<User> allUUser) {
         this.type = type;
@@ -42,7 +43,18 @@ public class CommunicationPackage implements Serializable{
         this.allUser = allUser;
     }
     
-    public ArrayList<User> getAllUser() {
+    
+    public ArrayList<Ticket> getAllTickets() {
+		return allTickets;
+	}
+
+
+	public void setAllTickets(ArrayList<Ticket> allTickets) {
+		this.allTickets = allTickets;
+	}
+
+
+	public ArrayList<User> getAllUser() {
 		return allUser;
 	}
 

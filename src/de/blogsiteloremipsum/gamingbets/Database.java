@@ -120,7 +120,7 @@ public class Database {
     	try{
     		String query = "INSERT INTO 'ticket' ('userID', 'content') VALUES(?, ?)";
     		PreparedStatement stmt = con.prepareStatement(query);
-    		stmt.setInt(1, ticket.getUser().getID());
+    		stmt.setInt(1, ticket.getID());
     		stmt.setString(2, ticket.getContent());
     		stmt.executeQuery();
     		

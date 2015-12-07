@@ -44,9 +44,6 @@ public class Ticket {
         this.ID = ID;
     }
 
-    public User getUser() {
-        return user;
-    }
 
     public int getStatus() {
         return status;
@@ -60,13 +57,6 @@ public class Ticket {
         return processors;
     }
 
-    public List<String[]> getMessages() {
-        return messages;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     public void setStatus(int status) {
         this.status = status;
@@ -80,7 +70,5 @@ public class Ticket {
         this.processors = processors;
     }
 
-    public void setMessages(List<String[]> messages) {
-        this.messages = messages;
-    }
+    
 }
