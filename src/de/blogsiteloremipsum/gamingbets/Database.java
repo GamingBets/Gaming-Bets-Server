@@ -1,5 +1,6 @@
 package de.blogsiteloremipsum.gamingbets;
 
+import java.security.MessageDigest;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -48,7 +49,7 @@ public class Database {
     	Ticket t;
     	ArrayList<Ticket> tickets = new ArrayList<Ticket>();
     	try{
-    		String query = "SELECT * FROM 'ticket'";
+    		String query = "SELECT * FROM `ticket`";
     		PreparedStatement stmt = con.prepareStatement(query);
     		ResultSet rs = stmt.executeQuery();
     		while(rs.next()){
@@ -71,7 +72,7 @@ public class Database {
     	Connection con = connect();
     	
     	try{
-    		String query = "UPDATE 'ticket' SET('status'=?) WHERE 'iD'=?";
+    		String query = "UPDATE `ticket` SET(`status`=?) WHERE `iD`=?";
     		PreparedStatement stmt = con.prepareStatement(query);
     		stmt.setInt(1, status);
     		stmt.setInt(2, id);
@@ -94,7 +95,7 @@ public class Database {
     	
     	try{    		
 	    	
-	    	String query = "SELECT * FROM 'user' ODER BY 'score'";	
+	    	String query = "SELECT * FROM `user` ORDER BY `score`";	
 	    	PreparedStatement stmt = con.prepareStatement(query);
 	    	ResultSet rs = stmt.executeQuery();
 	    	
@@ -118,11 +119,12 @@ public class Database {
     public static boolean postTicket(Ticket ticket){
     	Connection con = connect();
     	try{
-    		String query = "INSERT INTO 'ticket' ('userID', 'content') VALUES(?, ?)";
+    		String query = "INSERT INTO `ticket` (`userID`, `content`, `date`) VALUES(?, ?, ?)";
     		PreparedStatement stmt = con.prepareStatement(query);
     		stmt.setInt(1, ticket.getID());
     		stmt.setString(2, ticket.getContent());
-    		stmt.executeQuery();
+    		stmt.setDate(3, ticket.getDate());
+    		stmt.execute();
     		
     		stmt.close();
     		con.close();
@@ -137,10 +139,30 @@ public class Database {
     public static boolean edit(User user){
     	Connection con = connect();
     	try{
-    		String query = "UPDATE 'user' SET ('password' = ?, 'email' = ?)WHERE  'userName'= ?";
-		    PreparedStatement stmt = con.prepareStatement(query);
-		    stmt.setString(1, user.getPassword());
-		    stmt.setString(2, user.getEmail());
+    		
+    		String generatedPassword = "";
+            
+            // Create MessageDigest instance for MD5
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            //Add password bytes to digest
+            md.update(user.getPassword().getBytes());
+            //Get the hash's bytes
+            byte[] bytes = md.digest();
+            //This bytes[] has bytes in decimal format;
+            //Convert it to hexadecimal format
+            StringBuilder sb = new StringBuilder();
+            for(int i=0; i< bytes.length ;i++)
+            {
+                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            }
+            //Get complete hashed password in hex format
+            generatedPassword = sb.toString();
+                
+		    String query = "UPDATE `GamingBets`.`user` SET `email`=?, `password`=? WHERE `userName`=?";
+    		PreparedStatement stmt = con.prepareStatement(query);
+		    
+		    stmt.setString(1, user.getEmail());
+		    stmt.setString(2, generatedPassword);
 		    stmt.setString(3, user.getUserName());
 		    stmt.executeUpdate();
 		    
@@ -159,7 +181,7 @@ public class Database {
     	
     	Connection con = connect();
     	try{
-    		String query = "SELECT 'userName' FROM 'user' WHERE 'userName'=?";
+    		String query = "SELECT `userName` FROM `user` WHERE `userName`=?";
     		PreparedStatement stmt = con.prepareStatement(query);
     		stmt.setString(1, userName);
     		

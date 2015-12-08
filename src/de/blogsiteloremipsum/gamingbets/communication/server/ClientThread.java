@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 import de.blogsiteloremipsum.gamingbets.communication.CommunicationPackage;
+import de.blogsiteloremipsum.gamingbets.communication.communication_types;
 
 /**
  * Created by Felix on 17.11.2015.
@@ -24,19 +25,29 @@ public class ClientThread implements Runnable{
     public void run() {
 
         try {
-            PrintWriter out = new PrintWriter(this.clientsocket.getOutputStream(), true);
+            
 
             ObjectInputStream in = new ObjectInputStream(clientsocket.getInputStream());
             CommunicationPackage cp = (CommunicationPackage) in.readObject();
-            ObjectOutputStream out1 = new ObjectOutputStream(this.clientsocket.getOutputStream());
+            CommunicationPackageHandler cph = new CommunicationPackageHandler(cp);
+            if(cp.getType().equals(communication_types.SENDLEADERBOARD)||cp.getType().equals(communication_types.SENDTICKETS)||cp.getType().equals(communication_types.SENDUSERS)||cp.getType().equals(communication_types.SENDUSER)){
+            	ObjectOutputStream out1 = new ObjectOutputStream(this.clientsocket.getOutputStream());
+            	out1.writeObject(cph.handleObject());
+            }else{
+            	PrintWriter out = new PrintWriter(this.clientsocket.getOutputStream(), true);
+            	out.println(cph.handle());
+            	
+            }
+           
             
 
             //Handle Package and return result
-            CommunicationPackageHandler cph = new CommunicationPackageHandler(cp);
-            out1.writeObject(cph.handleObject());
-            out.println(cph.handle());
-
-
+            
+            
+           
+            
+            
+            
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {

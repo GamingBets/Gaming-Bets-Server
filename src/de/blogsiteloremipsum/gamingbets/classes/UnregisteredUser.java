@@ -9,6 +9,7 @@ import java.sql.Date;
  */
 public class UnregisteredUser implements Serializable {
 
+	
     /**
 	 * 
 	 */
