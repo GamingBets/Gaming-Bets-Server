@@ -2,6 +2,7 @@ package de.blogsiteloremipsum.gamingbets.communication.server;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 
@@ -27,11 +28,12 @@ public class ClientThread implements Runnable{
 
             ObjectInputStream in = new ObjectInputStream(clientsocket.getInputStream());
             CommunicationPackage cp = (CommunicationPackage) in.readObject();
-
+            ObjectOutputStream out1 = new ObjectOutputStream(this.clientsocket.getOutputStream());
             
 
             //Handle Package and return result
             CommunicationPackageHandler cph = new CommunicationPackageHandler(cp);
+            out1.writeObject(cph.handleObject());
             out.println(cph.handle());
 
 
