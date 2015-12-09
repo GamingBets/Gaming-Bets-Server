@@ -39,6 +39,8 @@ public class CommunicationPackageHandler {
                 return register();
             case POSTTICKET:
             	return postTicket();
+            case SETSTATUS:
+            	return setStatus();
             default:
                 return "kein gültiger Package Type";
         }
@@ -53,6 +55,8 @@ public class CommunicationPackageHandler {
         	return getTickets();
         case SENDUSERS:             
             return getUsers();
+        case SENDUSER:
+        	return getUser();
         default:
             return null;
     	}
@@ -77,8 +81,14 @@ public class CommunicationPackageHandler {
     
     public CommunicationPackage getUsers(){
     	CommunicationPackage cp = new CommunicationPackage(communication_types.SENDUSERS, null, null, null, null, null);
-    	cp.setAllUser(cp.getAllUser());
+    	cp.setAllUser(Database.getAllUser());
     	return cp;
+    }
+    
+    public String setStatus(){
+    	if(Database.setStatus(cp.getTicket().getID(), cp.getTicket().getStatus())){
+    		return "done";
+    	}return "not done";
     }
     public String postTicket(){
     	if(Database.postTicket(cp.getTicket()))

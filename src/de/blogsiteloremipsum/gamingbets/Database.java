@@ -49,8 +49,9 @@ public class Database {
     	Ticket t;
     	ArrayList<Ticket> tickets = new ArrayList<Ticket>();
     	try{
-    		String query = "SELECT * FROM `ticket`";
+    		String query = "SELECT * FROM `ticket` WHERE `status` = ?";
     		PreparedStatement stmt = con.prepareStatement(query);
+    		stmt.setInt(1, 2);
     		ResultSet rs = stmt.executeQuery();
     		while(rs.next()){
     			t = new Ticket(rs.getInt("iD"), rs.getInt("userID"), rs.getInt("status"), rs.getDate("date"), null, rs.getString("content"));
@@ -72,12 +73,12 @@ public class Database {
     	Connection con = connect();
     	
     	try{
-    		String query = "UPDATE `ticket` SET(`status`=?) WHERE `iD`=?";
+    		String query = "UPDATE `ticket` SET `status`=? WHERE `iD`=?";
     		PreparedStatement stmt = con.prepareStatement(query);
     		stmt.setInt(1, status);
     		stmt.setInt(2, id);
     		
-    		stmt.executeQuery();
+    		stmt.execute();
     		
     		return true;
     	}catch(Exception e){
@@ -95,7 +96,7 @@ public class Database {
     	
     	try{    		
 	    	
-	    	String query = "SELECT * FROM `user` ORDER BY `score`";	
+	    	String query = "SELECT * FROM `user` ORDER BY `score` DESC";	
 	    	PreparedStatement stmt = con.prepareStatement(query);
 	    	ResultSet rs = stmt.executeQuery();
 	    	
@@ -121,7 +122,7 @@ public class Database {
     	try{
     		String query = "INSERT INTO `ticket` (`userID`, `content`, `date`) VALUES(?, ?, ?)";
     		PreparedStatement stmt = con.prepareStatement(query);
-    		stmt.setInt(1, ticket.getID());
+    		stmt.setInt(1, ticket.getUserID());
     		stmt.setString(2, ticket.getContent());
     		stmt.setDate(3, ticket.getDate());
     		stmt.execute();
@@ -158,12 +159,13 @@ public class Database {
             //Get complete hashed password in hex format
             generatedPassword = sb.toString();
                 
-		    String query = "UPDATE `GamingBets`.`user` SET `email`=?, `password`=? WHERE `userName`=?";
+		    String query = "UPDATE `GamingBets`.`user` SET `userName`=?, `email`=?, `password`=? WHERE `userID`=?";
     		PreparedStatement stmt = con.prepareStatement(query);
 		    
-		    stmt.setString(1, user.getEmail());
-		    stmt.setString(2, generatedPassword);
-		    stmt.setString(3, user.getUserName());
+    		stmt.setString(1, user.getUserName());
+		    stmt.setString(2, user.getEmail());
+		    stmt.setString(3, generatedPassword);
+		    stmt.setInt(4, user.getID());
 		    stmt.executeUpdate();
 		    
 		    stmt.close();
@@ -277,7 +279,7 @@ public class Database {
     	
     	try{    		
 	    	
-	    	String query = "SELECT * FROM 'user'";	
+	    	String query = "SELECT * FROM `user`";	
 	    	PreparedStatement stmt = con.prepareStatement(query);
 	    	
 	    	ResultSet rs = stmt.executeQuery();	    	

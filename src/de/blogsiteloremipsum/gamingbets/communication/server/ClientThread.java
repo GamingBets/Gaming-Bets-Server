@@ -33,6 +33,7 @@ public class ClientThread implements Runnable{
             if(cp.getType().equals(communication_types.SENDLEADERBOARD)||cp.getType().equals(communication_types.SENDTICKETS)||cp.getType().equals(communication_types.SENDUSERS)||cp.getType().equals(communication_types.SENDUSER)){
             	ObjectOutputStream out1 = new ObjectOutputStream(this.clientsocket.getOutputStream());
             	out1.writeObject(cph.handleObject());
+            	out1.close();
             }else{
             	PrintWriter out = new PrintWriter(this.clientsocket.getOutputStream(), true);
             	out.println(cph.handle());
