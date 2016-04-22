@@ -1,8 +1,8 @@
-package de.blogsiteloremipsum.gamingbets.communication.server.microservices;
+package de.blogsiteloremipsum.gamingbets.server.microservices;
 
-public class Create_Bet_Lol {
+public class Create_Bet_SC2 {
 
-	public Create_Bet_Lol() {
+	public Create_Bet_SC2() {
 
 	}
 

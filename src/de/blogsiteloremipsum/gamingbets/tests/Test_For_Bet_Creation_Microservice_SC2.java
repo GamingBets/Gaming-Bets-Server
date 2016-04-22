@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.*;
 
-import de.blogsiteloremipsum.gamingbets.communication.server.microservices.Create_Bet_SC2;
+import de.blogsiteloremipsum.gamingbets.server.microservices.Create_Bet_SC2;
 
 public class Test_For_Bet_Creation_Microservice_SC2 {
 

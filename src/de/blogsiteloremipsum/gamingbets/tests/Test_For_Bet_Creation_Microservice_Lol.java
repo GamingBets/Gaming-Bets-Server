@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.blogsiteloremipsum.gamingbets.communication.server.microservices.Create_Bet_Lol;
+import de.blogsiteloremipsum.gamingbets.server.microservices.Create_Bet_Lol;
 
 public class Test_For_Bet_Creation_Microservice_Lol {
 	Create_Bet_Lol cb;
