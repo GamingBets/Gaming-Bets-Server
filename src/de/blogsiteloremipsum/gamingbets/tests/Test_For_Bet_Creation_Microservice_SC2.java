@@ -22,13 +22,13 @@ public class Test_For_Bet_Creation_Microservice_SC2 {
 
 	@Test
 	public void CreateInsertQueryForBetsTable() {
-		assertEquals(cb.createInsertQuery(), "Some Insert Statement, yet to be written");
+		assertEquals(cb.createInsertQuery(1), "Some Insert Statement, yet to be written");
 
 	}
 
 	@Test
 	public void CreateUpdateQueryForBetsTable() {
-		assertEquals(cb.createUpdateQuery(), "Some Update Statement, yet to be written");
+		assertEquals(cb.createUpdateQuery(1), "Some Update Statement, yet to be written");
 
 	}
 

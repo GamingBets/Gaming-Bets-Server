@@ -31,4 +31,9 @@ public class Test_For_Bet_Creation_Microservice_Lol {
 		assertEquals(cb.createUpdateQuery(), "Some Update Statement, yet to be written");
 
 	}
+	
+	@Test
+	public void dummyTest(){
+		assertEquals("a", "a");
+	}
 }
