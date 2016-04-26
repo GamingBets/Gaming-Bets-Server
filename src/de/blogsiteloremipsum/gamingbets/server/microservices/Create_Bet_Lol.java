@@ -10,11 +10,11 @@ public class Create_Bet_Lol {
 		return null;
 	}
 
-	public String createInsertQuery() {
+	public String createInsertQuery(int id) {
 		return null;
 	}
 
-	public String createUpdateQuery() {
+	public String createUpdateQuery(int id) {
 		return null;
 	}
 

@@ -1,13 +1,8 @@
 package de.blogsiteloremipsum.gamingbets.server.microservices;
 
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Connection;
-
 import de.blogsiteloremipsum.gamingbets.Database;
-import de.blogsiteloremipsum.gamingbets.classes.Ticket;
+
+import java.sql.*;
 
 public class Create_Bet_SC2 {
 
@@ -54,7 +49,7 @@ public class Create_Bet_SC2 {
 	}
 
 	public String createSelectQuery() {
-		return "SELECT * FROM GamingBets.sc2_matches WHERE bet_created = 0";
+		return "SELECT * FROM GamingBets.sc2_matches WHERE bet_created = 0;";
 	}
 
 	public String createInsertQuery(int id) {
