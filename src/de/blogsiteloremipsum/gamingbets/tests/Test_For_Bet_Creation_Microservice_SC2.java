@@ -1,14 +1,14 @@
 package de.blogsiteloremipsum.gamingbets.tests;
 
-import static org.junit.Assert.*;
-
-import org.junit.*;
-
 import de.blogsiteloremipsum.gamingbets.server.microservices.Create_Bet_SC2;
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class Test_For_Bet_Creation_Microservice_SC2 {
 
-	Create_Bet_SC2 cb;
+	private Create_Bet_SC2 cb;
 
 	@Before
 	public void init() {
@@ -17,18 +17,18 @@ public class Test_For_Bet_Creation_Microservice_SC2 {
 
 	@Test
 	public void QueryForMatchesWithoutCreatedFlag() {
-		assertEquals(cb.createSelectQuery(), "SELECT * FROM SC2.matches WHERE bet_created = 0;");
+		assertEquals("SELECT * FROM GamingBets.sc2_matches WHERE bet_created = 0;", cb.createSelectQuery());
 	}
 
 	@Test
 	public void CreateInsertQueryForBetsTable() {
-		assertEquals(cb.createInsertQuery(1), "Some Insert Statement, yet to be written");
+		assertEquals("INSERT INTO `gamingbets`.`sc2_available_bets` (`match_id`) VALUES ('1');", cb.createInsertQuery(1));
 
 	}
 
 	@Test
 	public void CreateUpdateQueryForBetsTable() {
-		assertEquals(cb.createUpdateQuery(1), "Some Update Statement, yet to be written");
+		assertEquals("UPDATE `GamingBets`.`sc2_matches` SET `bet_created`='1' WHERE `id`='1';", cb.createUpdateQuery(1));
 
 	}
 
