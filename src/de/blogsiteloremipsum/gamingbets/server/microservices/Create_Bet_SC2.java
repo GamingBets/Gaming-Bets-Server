@@ -23,6 +23,7 @@ public class Create_Bet_SC2 {
 		try {
 			stmt = con.prepareStatement(query);
 			ResultSet rs = stmt.executeQuery();
+			int i = 0;
 			while (rs.next()) {
 				
 				stmt = con.prepareStatement(createInsertQuery(rs.getInt("id")));
@@ -31,7 +32,11 @@ public class Create_Bet_SC2 {
 				
 				stmt = con.prepareStatement(createUpdateQuery(rs.getInt("id")));
 				stmt.executeUpdate();
+				
+				i++;
+				
 			}
+		System.out.println(i+" rows affected!");
 		System.out.println("Finished!");
 		} catch (SQLException e) {
 			//TODO Exception Handling
