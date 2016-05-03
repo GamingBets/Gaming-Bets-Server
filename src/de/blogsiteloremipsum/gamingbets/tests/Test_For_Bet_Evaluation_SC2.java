@@ -157,19 +157,20 @@ public class Test_For_Bet_Evaluation_SC2 {
 				stmt = con.prepareStatement(query);
 				rs = stmt.executeQuery();
 				while (rs.next()) {
-					if (rs.getInt("status") <= 3) {
+					if (rs.getInt("status") < 3) {
 						String failmessage = "At least one Bet was not evaluated!";
 						fail(failmessage);
 					}
 				}
 			} catch (SQLException e) {
-
+				e.printStackTrace();
 			}
 		}
 	}
 
 	@Test
 	public void checkIfEvaluationIsCorrect() {
+		test_object.run();
 		try {
 			String query = "SELECT b.status, m.result, b.betted_result, b.bet_id, b.idsc2_bet, m.id from gamingbets.sc2_bet b, sc2_available_bets ab, sc2_matches m WHERE b.bet_id = ab.idsc2_available_bets and ab.match_id = m.id and b.user_id = 19;";
 			PreparedStatement stmt = con.prepareStatement(query);
@@ -183,7 +184,7 @@ public class Test_For_Bet_Evaluation_SC2 {
 					String failmessage = "A bet was evaluated as right, altough it should be wrong!";
 					fail(failmessage);
 				}
-				assertFalse("Status was not valid!", rs.getInt("status")>4 || rs.getInt("status")< 3);
+				assertFalse("Status was not valid!"+rs.getInt("status"), rs.getInt("status")>4 || rs.getInt("status")< 3);
 				
 			}
 		} catch (SQLException e) {
