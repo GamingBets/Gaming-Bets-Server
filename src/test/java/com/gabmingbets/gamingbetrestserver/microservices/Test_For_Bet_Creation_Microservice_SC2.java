@@ -1,6 +1,4 @@
-package de.blogsiteloremipsum.gamingbets.tests;
-
-import de.blogsiteloremipsum.gamingbets.server.microservices.Create_Bet_SC2;
+package com.gabmingbets.gamingbetrestserver.microservices;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package de.blogsiteloremipsum.gamingbets.tests;
+package com.gabmingbets.gamingbetrestserver.microservices;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

@@ -1,4 +1,4 @@
-package de.blogsiteloremipsum.gamingbets.tests;
+package com.gabmingbets.gamingbetrestserver.microservices;
 
 import static org.junit.Assert.*;
 
@@ -6,10 +6,6 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import org.junit.*;
-
-import de.blogsiteloremipsum.gamingbets.Database;
-import de.blogsiteloremipsum.gamingbets.server.microservices.Evaluate_Bet_Lol;
-import de.blogsiteloremipsum.gamingbets.server.microservices.Evaluate_Bet_SC2;
 
 public class Test_For_Bet_Evaluation_SC2 {
 

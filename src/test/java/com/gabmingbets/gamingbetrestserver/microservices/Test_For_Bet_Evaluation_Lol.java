@@ -1,5 +1,4 @@
-package de.blogsiteloremipsum.gamingbets.tests;
-
+package com.gabmingbets.gamingbetrestserver.microservices;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 
@@ -13,9 +12,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import de.blogsiteloremipsum.gamingbets.Database;
-import de.blogsiteloremipsum.gamingbets.server.microservices.Evaluate_Bet_Lol;
 
 public class Test_For_Bet_Evaluation_Lol {
 

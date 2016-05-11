@@ -1,8 +1,5 @@
-package de.blogsiteloremipsum.gamingbets.tests;
+package com.gabmingbets.gamingbetrestserver.microservices;
 
-import de.blogsiteloremipsum.gamingbets.server.microservices.Create_Bet_Lol;
-import de.blogsiteloremipsum.gamingbets.server.microservices.Create_Bet_SC2;
-import de.blogsiteloremipsum.gamingbets.server.microservices.Evaluate_Bet_SC2;
 
 public class ProductionTestMain {
 

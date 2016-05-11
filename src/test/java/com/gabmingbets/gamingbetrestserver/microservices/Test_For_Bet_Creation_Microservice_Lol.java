@@ -1,6 +1,5 @@
-package de.blogsiteloremipsum.gamingbets.tests;
+package com.gabmingbets.gamingbetrestserver.microservices;
 
-import de.blogsiteloremipsum.gamingbets.server.microservices.Create_Bet_Lol;
 import org.junit.Before;
 import org.junit.Test;
 
