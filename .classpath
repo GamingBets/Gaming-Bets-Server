@@ -13,5 +13,11 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="lib/org.json-20150729.jar" sourcepath="lib/org.json-20150729-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:platform:/resource/GamingBets%20Server/lib/org.json-20150729-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.38-bin.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
