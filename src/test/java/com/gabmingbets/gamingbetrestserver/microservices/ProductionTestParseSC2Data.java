@@ -10,7 +10,7 @@ public class ProductionTestParseSC2Data {
 	public static void main(String[] args) {
 		String player1 = "iAsonu";
 		String player2 = "Harstem";
-		String tournament = "Gold_Series_International_2016";
+		String tournament = "http://wiki.teamliquid.net/starcraft2/2016_WCS_Spring_Circuit_Championship";
 		
 		ArrayList<SC2Match> list = GetSC2Data.getMatchesFromTournament(tournament);
 		
