@@ -179,7 +179,7 @@ public class GetSC2Data {
 		ArrayList<SC2Match> list = new ArrayList<SC2Match>();
 
 		// CutURLToTournamentIdentifier
-		// TODO
+		url = url.substring(38);
 
 		// Send an HTTP POST Request to Liquipedia
 		String httpResponse;
@@ -208,9 +208,13 @@ public class GetSC2Data {
 
 		String maps[] = JSONObject.getNames(json_matches);
 		ArrayList<SC2Match> list = new ArrayList<SC2Match>();
+		SC2Match temp;
 
 		for (int i = 0; i < maps.length; i++) {
-			list.add(parseJSONObjectToSC2Match(json_matches.getJSONObject(maps[i])));
+			temp = parseJSONObjectToSC2Match(json_matches.getJSONObject(maps[i]));
+			if (temp != null) {
+				list.add(temp);
+			}
 		}
 
 		return list;
@@ -221,7 +225,7 @@ public class GetSC2Data {
 		String maps[] = JSONObject.getNames(json_matches);
 
 		for (int i = 0; i < maps.length; i++) {
-			if (maps[i].contains("Map") || maps[i].contains("TBD")) {
+			if (maps[i].contains("Map")/* || maps[i].contains("TBD")*/) {
 				json_matches.remove(maps[i]);
 			}
 
@@ -247,6 +251,11 @@ public class GetSC2Data {
 
 		match.setTournament(tournament);
 
+		if(player1.getString(0).equalsIgnoreCase("tbd") ||
+				player2.getString(0).equalsIgnoreCase("tbd")){
+			return null;
+		}
+		
 		match.setPlayer1(player1.getString(0));
 		match.setPlayer2(player2.getString(0));
 
