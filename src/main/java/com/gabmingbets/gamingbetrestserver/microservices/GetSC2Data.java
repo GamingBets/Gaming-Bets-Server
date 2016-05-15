@@ -108,69 +108,6 @@ public class GetSC2Data {
 		return response.toString();
 
 	}
-
-//	public static JSONObject parseResponseStringToJSONObject(String response) {
-//		JSONObject object = new JSONObject(response);
-//		object = object.getJSONObject("query");
-//		object = object.getJSONObject("results");
-//		String maps[] = JSONObject.getNames(object);
-//		String result_object_name = "";
-//
-//		for (int i = 0; i < maps.length; i++) {
-//			if (!maps[i].contains("Map")) {
-//				result_object_name = maps[i];
-//			}
-//
-//		}
-//		object = object.getJSONObject(result_object_name);
-//		object = object.getJSONObject("printouts");
-//
-//		JSONArray player1 = object.getJSONArray("has_player_right");
-//		JSONArray player2 = object.getJSONArray("has_player_left");
-//		JSONArray player1_score = object.getJSONArray("has_player_right_score");
-//		JSONArray player2_score = object.getJSONArray("has_player_left_score");
-//
-//		JSONArray tournament = object.getJSONArray("has_tournament");
-//		JSONObject tournament_text = tournament.getJSONObject(0);
-//		String tournament_full_text = tournament_text.getString("fulltext");
-//
-//		SC2Match match = new SC2Match();
-//		match.setTournament(tournament_full_text);
-//
-//		match.setPlayer1(player1.getString(0));
-//		match.setPlayer2(player2.getString(0));
-//
-//		int score = 0;
-//
-//		score = player1_score.getInt(0) * 10;
-//		score += player2_score.getInt(0);
-//
-//		match.setScore(score);
-//
-//		System.out.println(match.toString());
-//
-//		return object;
-//	}
-
-//	public static SC2Match parseByTournament(String tournament) {
-//		System.out.println("Testing!");
-//		System.out.println(excutePost(updateURL(null, null, tournament)));
-//
-//		return null;
-//	}
-//
-//	public static SC2Match parseByTournamentAndPlayer(String player1, String player2, String tournament) {
-		// JSONArray object =
-		// parseResponseStringToJSONObject((excutePost(updateURL(player1,
-		// player2, tournament))));
-		// SC2Match match = new SC2Match();
-		// System.out.println(object.get(1));
-//		return null;
-//
-//	}
-
-	
-	
 	
 	// Call this Method with an URL of a Liquipedia Tournament, and it will
 	// return you a list of all Matches!
@@ -179,7 +116,7 @@ public class GetSC2Data {
 		ArrayList<SC2Match> list = new ArrayList<SC2Match>();
 
 		// CutURLToTournamentIdentifier
-		// TODO
+		url = url.substring(38);
 
 		// Send an HTTP POST Request to Liquipedia
 		String httpResponse;
@@ -190,27 +127,31 @@ public class GetSC2Data {
 
 		// Filters Objects which describe only one map out of the List and
 		// invalid datasets
-		json_matches = filterMatches(json_matches);
+		JSONObject json_matches_filtered = filterMatches(json_matches);
 
 		// TODO Order By Matches!
 
-		System.out.println("\n--------------------------\nOutput from \"getMatchesFromTournament\":\n");
-		System.out.println(json_matches);
-		System.out.println();
+//		System.out.println("\n--------------------------\nOutput from \"getMatchesFromTournament\":\n");
+//		System.out.println(json_matches);
+//		System.out.println();
 
 		// Creates a SC2Match Object for each JSONObject
-		list = parseJSONMachtesToListOfSC2Machtes(json_matches);
+		list = parseJSONMachtesToListOfSC2Machtes(json_matches_filtered, json_matches);
 
 		return list;
 	}
 
-	private static ArrayList<SC2Match> parseJSONMachtesToListOfSC2Machtes(JSONObject json_matches) {
+	private static ArrayList<SC2Match> parseJSONMachtesToListOfSC2Machtes(JSONObject json_matches_filtered, JSONObject json_matches) {
 
-		String maps[] = JSONObject.getNames(json_matches);
+		String maps[] = JSONObject.getNames(json_matches_filtered);
 		ArrayList<SC2Match> list = new ArrayList<SC2Match>();
+		SC2Match temp;
 
 		for (int i = 0; i < maps.length; i++) {
-			list.add(parseJSONObjectToSC2Match(json_matches.getJSONObject(maps[i])));
+			temp = parseJSONObjectToSC2Match(json_matches_filtered.getJSONObject(maps[i]), json_matches);
+			if (temp != null) {
+				list.add(temp);
+			}
 		}
 
 		return list;
@@ -221,7 +162,7 @@ public class GetSC2Data {
 		String maps[] = JSONObject.getNames(json_matches);
 
 		for (int i = 0; i < maps.length; i++) {
-			if (maps[i].contains("Map") || maps[i].contains("TBD")) {
+			if (maps[i].contains("Map")/* || maps[i].contains("TBD")*/) {
 				json_matches.remove(maps[i]);
 			}
 
@@ -230,7 +171,7 @@ public class GetSC2Data {
 
 	}
 
-	private static SC2Match parseJSONObjectToSC2Match(JSONObject each_object) {
+	private static SC2Match parseJSONObjectToSC2Match(JSONObject each_object, JSONObject list_of_all_matches) {
 
 		SC2Match match = new SC2Match();
 
@@ -247,9 +188,19 @@ public class GetSC2Data {
 
 		match.setTournament(tournament);
 
+		if(player1.getString(0).equalsIgnoreCase("tbd") ||
+				player2.getString(0).equalsIgnoreCase("tbd")){
+			return null;
+		}
+		
 		match.setPlayer1(player1.getString(0));
 		match.setPlayer2(player2.getString(0));
 
+//		ArrayList<SC2Set> sets = getSetsForMatch(player1.getString(0), player2.getString(0), list_of_all_matches);
+//		match.setSets(sets);
+	
+		
+		
 		int score = 0;
 
 		score = player1_score.getInt(0) * 10;
@@ -258,6 +209,38 @@ public class GetSC2Data {
 		match.setScore(score);
 
 		return match;
+	}
+
+	private static ArrayList<SC2Set> getSetsForMatch(String player1, String player2, JSONObject json_matches) {
+		
+		ArrayList<SC2Set> list = new ArrayList<SC2Set>();
+		String matches[] = JSONObject.getNames(json_matches);
+		
+		for (String each : matches) {
+			if (each.contains(player1) && each.contains(player2) && each.contains("Map")) {
+				int match_position = Integer.parseInt(each.substring(each.length()-1, each.length()));
+				
+				String winner = json_matches.getJSONObject(each).getJSONArray("has_winner").getString(0);
+				
+				SC2Set set; 
+				if (player1 == winner) {
+					set = new SC2Set(1, 0, match_position);
+				}else {
+					set = new SC2Set(0, 1, match_position);
+				}
+				
+				list.add(set);
+				
+				
+				
+				
+			}
+		}
+		
+	
+		
+		
+		return null;
 	}
 
 	private static JSONObject parseResponseToResultsAsJSONObject(String httpResponse) {
