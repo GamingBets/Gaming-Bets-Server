@@ -34,8 +34,7 @@ public class Create_Bet_SC2 {
 				i++;
 				
 			}
-		System.out.println(i+" rows affected!");
-		System.out.println("Finished!");
+		System.out.println(i+" available bets were created!");
 		} catch (SQLException e) {
 			//TODO Exception Handling
 			e.printStackTrace();
