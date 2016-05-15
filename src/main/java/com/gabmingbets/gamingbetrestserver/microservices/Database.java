@@ -21,8 +21,8 @@ public class Database {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
 
             String name = "GamingBets";
-            String user = "gamebet";
-            String password = "gamebetdb";
+            String user = "gameBet";
+            String password = "gamebet15";
 
             Connection con = DriverManager.getConnection(
                     "jdbc:mysql://localhost/" + name,
