@@ -79,6 +79,9 @@
                     <compilerArguments>
                         <endorseddirs>${endorsed.dir}</endorseddirs>
                     </compilerArguments>
+                    
+                    <skipTests>true</skipTests>
+        
                 </configuration>
             </plugin>
             <plugin>

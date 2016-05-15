@@ -25,7 +25,7 @@ import javax.ws.rs.core.MediaType;
  * @author Andre
  */
 @Stateless
-@Path("com.gabmingbets.gamingbetrestserver.domain.sc2availablebets")
+@Path("sc2availablebets")
 public class Sc2AvailableBetsFacadeREST extends AbstractFacade<Sc2AvailableBets> {
 
     @PersistenceContext(unitName = "com.gabmingbets_gamingBetRestServer_war_1.0PU")
