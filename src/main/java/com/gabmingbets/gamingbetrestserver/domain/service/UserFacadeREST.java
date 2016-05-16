@@ -71,9 +71,14 @@ public class UserFacadeREST extends AbstractFacade<User> {
         return query.getSingleResult();
     }
     
-    
-    
-
+    @GET
+    @Path("getLeaderboard")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<User> getLeaderboard(){
+        TypedQuery<User> query = getEntityManager().createNamedQuery("User.getLeaderboard", User.class);
+        return query.getResultList();
+    }
+      
     @GET
     @Override
     @Produces({ MediaType.APPLICATION_JSON})

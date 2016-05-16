@@ -25,7 +25,7 @@ import javax.ws.rs.core.MediaType;
  * @author Andre
  */
 @Stateless
-@Path("com.gabmingbets.gamingbetrestserver.domain.ticket")
+@Path("ticket")
 public class TicketFacadeREST extends AbstractFacade<Ticket> {
 
     @PersistenceContext(unitName = "com.gabmingbets_gamingBetRestServer_war_1.0PU")

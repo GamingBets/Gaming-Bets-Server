@@ -6,10 +6,14 @@
 package com.gabmingbets.gamingbetrestserver.domain.service;
 
 import com.gabmingbets.gamingbetrestserver.domain.Sc2AvailableBets;
+import com.gabmingbets.gamingbetrestserver.domain.Sc2Matches;
+import com.gabmingbets.gamingbetrestserver.domain.Sc2Player;
+import com.gabmingbets.gamingbetrestserver.domain.Sc2Tournament;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -67,6 +71,14 @@ public class Sc2AvailableBetsFacadeREST extends AbstractFacade<Sc2AvailableBets>
     @Produces({MediaType.APPLICATION_JSON})
     public List<Sc2AvailableBets> findAll() {
         return super.findAll();
+    }
+    @GET
+    @Path("notFinished")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Sc2AvailableBets> findAllNotFinished(){
+        TypedQuery<Sc2AvailableBets> query = getEntityManager().createNamedQuery("Sc2AvailableBets.findAllNotFinished", Sc2AvailableBets.class);
+        
+        return query.getResultList();
     }
 
     @GET

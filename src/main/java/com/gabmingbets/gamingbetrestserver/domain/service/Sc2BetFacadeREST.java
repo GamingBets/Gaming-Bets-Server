@@ -71,6 +71,7 @@ public class Sc2BetFacadeREST extends AbstractFacade<Sc2Bet> {
         TypedQuery<Sc2Bet> query = getEntityManager().createNamedQuery("Sc2Bet.findByUserId", Sc2Bet.class).setParameter("userId", id);
         return query.getSingleResult();
     }
+    
     @GET
     @Override
     @Produces({ MediaType.APPLICATION_JSON})
