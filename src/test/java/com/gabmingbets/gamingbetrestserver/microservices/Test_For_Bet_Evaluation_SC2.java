@@ -27,11 +27,11 @@ public class Test_For_Bet_Evaluation_SC2 {
 		// Create new Dummy Matches
 
 		try {
-			query = "INSERT INTO `gamingbets`.`sc2_matches` (`result`, `player1`, `player2`, `bet_created`, comment) VALUES ('2', '1', '2', '0', 'debug');";
+			query = "INSERT INTO `gamingbets`.`sc2_matches` (`result`, `player1`, `player2`, `bet_created`, comment, finished) VALUES ('20', '1', '2', '0', 'debug', 1);";
 			stmt = con.prepareStatement(query);
 			stmt.executeUpdate();
 
-			query = "INSERT INTO `gamingbets`.`sc2_matches` (`result`, `player1`, `player2`, `bet_created`, comment) VALUES ('1', '1', '2', '0', 'debug');";
+			query = "INSERT INTO `gamingbets`.`sc2_matches` (`result`, `player1`, `player2`, `bet_created`, comment, finished) VALUES ('3', '1', '2', '0', 'debug', 1);";
 			stmt = con.prepareStatement(query);
 			stmt.executeUpdate();
 
@@ -130,7 +130,7 @@ public class Test_For_Bet_Evaluation_SC2 {
 	@Test
 	public void checkIfAllBetsForFinishedMatchesWereEvaluated() {
 
-		String query = "SELECT b.idsc2_bet FROM gamingbets.sc2_bet b, sc2_available_bets ab, sc2_matches m WHERE b.bet_id = ab.idsc2_available_bets and ab.match_id = m.id and m.result != 0 and m.comment = 'debug';";
+		String query = "SELECT b.idsc2_bet FROM gamingbets.sc2_bet b, sc2_available_bets ab, sc2_matches m WHERE b.bet_id = ab.idsc2_available_bets and ab.match_id = m.id and m.finished = 1 and m.comment = 'debug';";
 		PreparedStatement stmt;
 		ResultSet rs;
 		ArrayList<Integer> bets = new ArrayList<Integer>();
@@ -171,12 +171,24 @@ public class Test_For_Bet_Evaluation_SC2 {
 			String query = "SELECT b.status, m.result, b.betted_result, b.bet_id, b.idsc2_bet, m.id from gamingbets.sc2_bet b, sc2_available_bets ab, sc2_matches m WHERE b.bet_id = ab.idsc2_available_bets and ab.match_id = m.id and b.user_id = 19;";
 			PreparedStatement stmt = con.prepareStatement(query);
 			ResultSet rs = stmt.executeQuery();
+			
+			boolean player1_won;
+			
 			while (rs.next()) {
-				if (rs.getInt("result") == rs.getInt("betted_result") && rs.getInt("status") == 4) {
+				
+				if (rs.getInt("result")<10) {
+					player1_won = false;
+				}else {
+					int player2_score = (rs.getInt("result")%10);
+					int player1_score = ((rs.getInt("result")-player2_score)/10);
+					player1_won = (player1_score>player2_score);
+				}
+				
+				if ((player1_won && 1 == rs.getInt("betted_result") || !player1_won && 1 != rs.getInt("betted_result")) &&rs.getInt("status") == 4) {
 					String failmessage = "A bet was evaluated as wrong, altough it should be right!";
 					fail(failmessage);
 				}
-				if (rs.getInt("result") != rs.getInt("betted_result") && rs.getInt("status") == 3) {
+				if ((player1_won && 1 != rs.getInt("betted_result") || !player1_won && 1 == rs.getInt("betted_result")) &&rs.getInt("status") == 3) {
 					String failmessage = "A bet was evaluated as right, altough it should be wrong!";
 					fail(failmessage);
 				}

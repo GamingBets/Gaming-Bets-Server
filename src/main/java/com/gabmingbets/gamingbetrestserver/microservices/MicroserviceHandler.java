@@ -7,13 +7,13 @@ public class MicroserviceHandler {
 		eb.run();
 	}
 	
-	public static void evaluateBetsLol(){
-		Evaluate_Bet_Lol eb = new Evaluate_Bet_Lol();
-		eb.run();
-	}
+//	public static void evaluateBetsLol(){
+//		Evaluate_Bet_Lol eb = new Evaluate_Bet_Lol();
+//		eb.run();
+//	}
 	
 	public static void evaluateBetsAll(){
-		evaluateBetsLol();
+//		evaluateBetsLol();
 		evaluateBetsSC2();
 	}
 	
@@ -22,13 +22,13 @@ public class MicroserviceHandler {
 		cab.run();
 	}
 	
-	public static void createAvailableBetsLoL(){
-		Create_Available_Bets_Lol cab = new Create_Available_Bets_Lol();
-		cab.run();
-	}
+//	public static void createAvailableBetsLoL(){
+//		Create_Available_Bets_Lol cab = new Create_Available_Bets_Lol();
+//		cab.run();
+//	}
 	
 	public static void createAvailableBetsAll(){
-		createAvailableBetsLoL();
+//		createAvailableBetsLoL();
 		createAvailableBetsSC2();
 	}
 	
