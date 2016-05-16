@@ -109,67 +109,6 @@ public class GetSC2Data {
 
 	}
 
-//	public static JSONObject parseResponseStringToJSONObject(String response) {
-//		JSONObject object = new JSONObject(response);
-//		object = object.getJSONObject("query");
-//		object = object.getJSONObject("results");
-//		String maps[] = JSONObject.getNames(object);
-//		String result_object_name = "";
-//
-//		for (int i = 0; i < maps.length; i++) {
-//			if (!maps[i].contains("Map")) {
-//				result_object_name = maps[i];
-//			}
-//
-//		}
-//		object = object.getJSONObject(result_object_name);
-//		object = object.getJSONObject("printouts");
-//
-//		JSONArray player1 = object.getJSONArray("has_player_right");
-//		JSONArray player2 = object.getJSONArray("has_player_left");
-//		JSONArray player1_score = object.getJSONArray("has_player_right_score");
-//		JSONArray player2_score = object.getJSONArray("has_player_left_score");
-//
-//		JSONArray tournament = object.getJSONArray("has_tournament");
-//		JSONObject tournament_text = tournament.getJSONObject(0);
-//		String tournament_full_text = tournament_text.getString("fulltext");
-//
-//		SC2Match match = new SC2Match();
-//		match.setTournament(tournament_full_text);
-//
-//		match.setPlayer1(player1.getString(0));
-//		match.setPlayer2(player2.getString(0));
-//
-//		int score = 0;
-//
-//		score = player1_score.getInt(0) * 10;
-//		score += player2_score.getInt(0);
-//
-//		match.setScore(score);
-//
-//		System.out.println(match.toString());
-//
-//		return object;
-//	}
-
-//	public static SC2Match parseByTournament(String tournament) {
-//		System.out.println("Testing!");
-//		System.out.println(excutePost(updateURL(null, null, tournament)));
-//
-//		return null;
-//	}
-//
-//	public static SC2Match parseByTournamentAndPlayer(String player1, String player2, String tournament) {
-		// JSONArray object =
-		// parseResponseStringToJSONObject((excutePost(updateURL(player1,
-		// player2, tournament))));
-		// SC2Match match = new SC2Match();
-		// System.out.println(object.get(1));
-//		return null;
-//
-//	}
-
-	
 	
 	
 	// Call this Method with an URL of a Liquipedia Tournament, and it will
