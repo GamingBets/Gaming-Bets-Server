@@ -34,11 +34,11 @@ public class Test_For_Adjust_Score_SC2 {
 		// Create new Dummy Matches
 
 		try {
-			query = "INSERT INTO `gamingbets`.`sc2_matches` (`result`, `player1`, `player2`, `bet_created`, comment) VALUES ('2', '1', '2', '0', 'debug');";
+			query = "INSERT INTO `gamingbets`.`sc2_matches` (`result`, `player1`, `player2`, `bet_created`, comment, finished) VALUES ('20', '1', '2', '0', 'debug', 1);";
 			stmt = con.prepareStatement(query);
 			stmt.executeUpdate();
 
-			query = "INSERT INTO `gamingbets`.`sc2_matches` (`result`, `player1`, `player2`, `bet_created`, comment) VALUES ('1', '1', '2', '0', 'debug');";
+			query = "INSERT INTO `gamingbets`.`sc2_matches` (`result`, `player1`, `player2`, `bet_created`, comment, finished) VALUES ('3', '1', '2', '0', 'debug', 1);";
 			stmt = con.prepareStatement(query);
 			stmt.executeUpdate();
 
