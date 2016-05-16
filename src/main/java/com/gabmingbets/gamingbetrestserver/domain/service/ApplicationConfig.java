@@ -29,8 +29,16 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(com.gabmingbets.gamingbetrestserver.domain.service.CountryFacadeREST.class);
+        resources.add(com.gabmingbets.gamingbetrestserver.domain.service.GametypFacadeREST.class);
         resources.add(com.gabmingbets.gamingbetrestserver.domain.service.Sc2AvailableBetsFacadeREST.class);
         resources.add(com.gabmingbets.gamingbetrestserver.domain.service.Sc2BetFacadeREST.class);
+        resources.add(com.gabmingbets.gamingbetrestserver.domain.service.Sc2MapsFacadeREST.class);
+        resources.add(com.gabmingbets.gamingbetrestserver.domain.service.Sc2MatchesFacadeREST.class);
+        resources.add(com.gabmingbets.gamingbetrestserver.domain.service.Sc2PlayerFacadeREST.class);
+        resources.add(com.gabmingbets.gamingbetrestserver.domain.service.Sc2RacesFacadeREST.class);
+        resources.add(com.gabmingbets.gamingbetrestserver.domain.service.Sc2TeamFacadeREST.class);
+        resources.add(com.gabmingbets.gamingbetrestserver.domain.service.Sc2TournamentFacadeREST.class);
         resources.add(com.gabmingbets.gamingbetrestserver.domain.service.TicketFacadeREST.class);
         resources.add(com.gabmingbets.gamingbetrestserver.domain.service.UserFacadeREST.class);
     }

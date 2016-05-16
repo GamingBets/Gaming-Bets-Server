@@ -14,6 +14,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -42,9 +44,23 @@ public class Sc2AvailableBets implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "betId")
     private Collection<Sc2Bet> sc2BetCollection;
 
+    @JoinColumn(name = "match_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Sc2Matches matchId;
+    
     public Sc2AvailableBets() {
     }
 
+    public Sc2Matches getMatchId() {
+        return matchId;
+    }
+
+    public void setMatchId(Sc2Matches matchId) {
+        this.matchId = matchId;
+    }
+
+   
+    
     public Sc2AvailableBets(Integer idsc2AvailableBets) {
         this.idsc2AvailableBets = idsc2AvailableBets;
     }

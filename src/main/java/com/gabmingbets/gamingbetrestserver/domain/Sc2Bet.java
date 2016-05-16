@@ -32,7 +32,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Sc2Bet.findByIdsc2Bet", query = "SELECT s FROM Sc2Bet s WHERE s.idsc2Bet = :idsc2Bet"),
     @NamedQuery(name = "Sc2Bet.findByBettedResult", query = "SELECT s FROM Sc2Bet s WHERE s.bettedResult = :bettedResult"),
     @NamedQuery(name = "Sc2Bet.findByStatus", query = "SELECT s FROM Sc2Bet s WHERE s.status = :status"),
-    @NamedQuery(name = "Sc2Bet.findByProcessed", query = "SELECT s FROM Sc2Bet s WHERE s.processed = :processed")})
+    @NamedQuery(name = "Sc2Bet.findByProcessed", query = "SELECT s FROM Sc2Bet s WHERE s.processed = :processed"),
+    @NamedQuery(name = "Sc2Bet.findByUserId", query = "SELECT s FROM Sc2Bet s WHERE s.userId = :userId")
+})
 public class Sc2Bet implements Serializable {
 
     private static final long serialVersionUID = 1L;

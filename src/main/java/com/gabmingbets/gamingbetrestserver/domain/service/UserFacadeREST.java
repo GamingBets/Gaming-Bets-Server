@@ -71,6 +71,8 @@ public class UserFacadeREST extends AbstractFacade<User> {
         return query.getSingleResult();
     }
     
+    
+    
 
     @GET
     @Override
