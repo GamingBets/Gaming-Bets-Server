@@ -6,11 +6,11 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class Test_For_Bet_Creation_Microservice_Lol {
-	Create_Bet_Lol cb;
+	Create_Available_Bets_Lol cb;
 
 	@Before
 	public void init() {
-		cb = new Create_Bet_Lol();
+		cb = new Create_Available_Bets_Lol();
 	}
 
 

@@ -2,12 +2,12 @@ package com.gabmingbets.gamingbetrestserver.microservices;
 
 import java.sql.*;
 
-public class Create_Bet_Lol {
+public class Create_Available_Bets_Lol {
 
 	private Date dateOfLastExecute;
 	private Connection con;
 
-	public Create_Bet_Lol() {
+	public Create_Available_Bets_Lol() {
 		dateOfLastExecute = getDateOfLastExecuteFromDB();
 		this.con = Database.connect();
 	}
