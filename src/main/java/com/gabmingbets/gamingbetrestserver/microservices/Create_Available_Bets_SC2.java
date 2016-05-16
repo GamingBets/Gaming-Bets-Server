@@ -2,12 +2,12 @@ package com.gabmingbets.gamingbetrestserver.microservices;
 
 import java.sql.*;
 
-public class Create_Bet_Lol {
+public class Create_Available_Bets_SC2 {
 
 	private Date dateOfLastExecute;
 	private Connection con;
 
-	public Create_Bet_Lol() {
+	public Create_Available_Bets_SC2() {
 		dateOfLastExecute = getDateOfLastExecuteFromDB();
 		this.con = Database.connect();
 	}
@@ -15,7 +15,7 @@ public class Create_Bet_Lol {
 	public void run() {
 		// Get dateOfLastExecute
 
-		// Query for LoL Matches with bet_created flag = 0
+		// Query for SC2 Matches with bet_created flag = 0
 		String query = createSelectQuery();
 		PreparedStatement stmt;
 		try {
@@ -24,18 +24,17 @@ public class Create_Bet_Lol {
 			int i = 0;
 			while (rs.next()) {
 				
-				stmt = con.prepareStatement(createInsertQuery(rs.getInt("idmatches")));
+				stmt = con.prepareStatement(createInsertQuery(rs.getInt("id")));
 				stmt.executeUpdate();
 				
 				
-				stmt = con.prepareStatement(createUpdateQuery(rs.getInt("idmatches")));
+				stmt = con.prepareStatement(createUpdateQuery(rs.getInt("id")));
 				stmt.executeUpdate();
 				
 				i++;
 				
 			}
-		System.out.println(i+" rows affected!");
-		System.out.println("Finished!");
+		System.out.println(i+" available bets were created!");
 		} catch (SQLException e) {
 			//TODO Exception Handling
 			e.printStackTrace();
@@ -52,16 +51,16 @@ public class Create_Bet_Lol {
 	}
 
 	public String createSelectQuery() {
-		return "SELECT * FROM gamingbets.lol_matches WHERE bet_created = 0;";
+		return "SELECT * FROM GamingBets.sc2_matches WHERE bet_created = 0;";
 	}
 
 	public String createInsertQuery(int id) {
-		return "INSERT INTO `gamingbets`.`lol_available_bets` (`match_id`) VALUES ('"+id+"');";
+		return "INSERT INTO `gamingbets`.`sc2_available_bets` (`match_id`) VALUES ('"+id+"');";
 
 	}
 
 	public String createUpdateQuery(int id) {
-		return "UPDATE `GamingBets`.`lol_matches` SET `bet_created`='1' WHERE `idmatches`='"+id+"';";
+		return "UPDATE `GamingBets`.`sc2_matches` SET `bet_created`='1' WHERE `id`='"+id+"';";
 	}
 
 }
