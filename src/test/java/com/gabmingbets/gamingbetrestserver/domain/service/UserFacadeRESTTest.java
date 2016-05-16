@@ -42,7 +42,7 @@ public class UserFacadeRESTTest {
 
     /**
      * Test of edit method, of class UserFacadeREST.
-     */
+     
     @org.junit.Test
     public void testEdit_GenericType() throws Exception {
         System.out.println("edit");
@@ -53,7 +53,7 @@ public class UserFacadeRESTTest {
         container.close();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
-    }
+    }*/
 
     /**
      * Test of remove method, of class UserFacadeREST.
@@ -190,7 +190,7 @@ public class UserFacadeRESTTest {
 
     /**
      * Test of findByName method, of class UserFacadeREST.
-     */
+     
     @org.junit.Test
     public void testFindByName() throws Exception {
         System.out.println("findByName");
@@ -203,7 +203,7 @@ public class UserFacadeRESTTest {
         container.close();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
-    }
+    }*/
 
     /**
      * Test of findAll method, of class UserFacadeREST.

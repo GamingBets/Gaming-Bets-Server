@@ -1,21 +1,34 @@
-C:\Users\Felix Morsbach\git\Gaming-Bets-Server\GamingBets Server\src\de\blogsiteloremipsum\gamingbets\communication\CommunicationPackage.java
-C:\Users\Felix Morsbach\git\Gaming-Bets-Server\GamingBets Server\src\de\blogsiteloremipsum\gamingbets\classes\Server.java
-C:\Users\Felix Morsbach\git\Gaming-Bets-Server\GamingBets Server\src\de\blogsiteloremipsum\gamingbets\classes\User.java
-C:\Users\Felix Morsbach\git\Gaming-Bets-Server\GamingBets Server\src\de\blogsiteloremipsum\gamingbets\Database.java
-C:\Users\Felix Morsbach\git\Gaming-Bets-Server\GamingBets Server\src\de\blogsiteloremipsum\gamingbets\tests\Test_For_Bet_Creation_Microservice_Lol.java
-C:\Users\Felix Morsbach\git\Gaming-Bets-Server\GamingBets Server\src\de\blogsiteloremipsum\gamingbets\classes\Bet.java
-C:\Users\Felix Morsbach\git\Gaming-Bets-Server\GamingBets Server\src\de\blogsiteloremipsum\gamingbets\classes\Match.java
-C:\Users\Felix Morsbach\git\Gaming-Bets-Server\GamingBets Server\src\de\blogsiteloremipsum\gamingbets\communication\server\CommunicationPackageHandler.java
-C:\Users\Felix Morsbach\git\Gaming-Bets-Server\GamingBets Server\src\de\blogsiteloremipsum\gamingbets\tests\Test_For_Bet_Creation_Microservice_SC2.java
-C:\Users\Felix Morsbach\git\Gaming-Bets-Server\GamingBets Server\src\de\blogsiteloremipsum\gamingbets\communication\server\LocalServerSocket.java
-C:\Users\Felix Morsbach\git\Gaming-Bets-Server\GamingBets Server\src\de\blogsiteloremipsum\gamingbets\tests\ProductionTestMain.java
-C:\Users\Felix Morsbach\git\Gaming-Bets-Server\GamingBets Server\src\de\blogsiteloremipsum\gamingbets\classes\Ticket.java
-C:\Users\Felix Morsbach\git\Gaming-Bets-Server\GamingBets Server\src\de\blogsiteloremipsum\gamingbets\classes\MatchLol.java
-C:\Users\Felix Morsbach\git\Gaming-Bets-Server\GamingBets Server\src\de\blogsiteloremipsum\gamingbets\classes\UnregisteredUser.java
-C:\Users\Felix Morsbach\git\Gaming-Bets-Server\GamingBets Server\src\de\blogsiteloremipsum\gamingbets\communication\server\ServerMethods.java
-C:\Users\Felix Morsbach\git\Gaming-Bets-Server\GamingBets Server\src\de\blogsiteloremipsum\gamingbets\server\microservices\Create_Bet_Lol.java
-C:\Users\Felix Morsbach\git\Gaming-Bets-Server\GamingBets Server\src\de\blogsiteloremipsum\gamingbets\server\microservices\Create_Bet_SC2.java
-C:\Users\Felix Morsbach\git\Gaming-Bets-Server\GamingBets Server\src\de\blogsiteloremipsum\gamingbets\communication\communication_types.java
-C:\Users\Felix Morsbach\git\Gaming-Bets-Server\GamingBets Server\src\de\blogsiteloremipsum\gamingbets\communication\server\ClientThread.java
-C:\Users\Felix Morsbach\git\Gaming-Bets-Server\GamingBets Server\src\de\blogsiteloremipsum\gamingbets\tests\All_Tests.java
-C:\Users\Felix Morsbach\git\Gaming-Bets-Server\GamingBets Server\src\de\blogsiteloremipsum\gamingbets\classes\MatchSc2.java
+E:\Users\Andre\Documents\NetBeansProjects\Gaming-Bets-Server-Rest-Git\Gaming-Bets-Server\src\main\java\com\gabmingbets\gamingbetrestserver\domain\service\Sc2BetFacadeREST.java
+E:\Users\Andre\Documents\NetBeansProjects\Gaming-Bets-Server-Rest-Git\Gaming-Bets-Server\src\main\java\com\gabmingbets\gamingbetrestserver\microservices\AdjustScoreSC2.java
+E:\Users\Andre\Documents\NetBeansProjects\Gaming-Bets-Server-Rest-Git\Gaming-Bets-Server\src\main\java\com\gabmingbets\gamingbetrestserver\domain\Sc2Bet.java
+E:\Users\Andre\Documents\NetBeansProjects\Gaming-Bets-Server-Rest-Git\Gaming-Bets-Server\src\main\java\com\gabmingbets\gamingbetrestserver\microservices\Create_Bet_Lol.java
+E:\Users\Andre\Documents\NetBeansProjects\Gaming-Bets-Server-Rest-Git\Gaming-Bets-Server\src\main\java\com\gabmingbets\gamingbetrestserver\microservices\Evaluate_Bet_SC2.java
+E:\Users\Andre\Documents\NetBeansProjects\Gaming-Bets-Server-Rest-Git\Gaming-Bets-Server\src\main\java\com\gabmingbets\gamingbetrestserver\domain\service\GametypFacadeREST.java
+E:\Users\Andre\Documents\NetBeansProjects\Gaming-Bets-Server-Rest-Git\Gaming-Bets-Server\src\main\java\com\gabmingbets\gamingbetrestserver\domain\service\Sc2AvailableBetsFacadeREST.java
+E:\Users\Andre\Documents\NetBeansProjects\Gaming-Bets-Server-Rest-Git\Gaming-Bets-Server\src\main\java\com\gabmingbets\gamingbetrestserver\domain\service\Sc2MatchesFacadeREST.java
+E:\Users\Andre\Documents\NetBeansProjects\Gaming-Bets-Server-Rest-Git\Gaming-Bets-Server\src\main\java\com\gabmingbets\gamingbetrestserver\domain\service\Sc2TournamentFacadeREST.java
+E:\Users\Andre\Documents\NetBeansProjects\Gaming-Bets-Server-Rest-Git\Gaming-Bets-Server\src\main\java\com\gabmingbets\gamingbetrestserver\domain\service\Sc2RacesFacadeREST.java
+E:\Users\Andre\Documents\NetBeansProjects\Gaming-Bets-Server-Rest-Git\Gaming-Bets-Server\src\main\java\com\gabmingbets\gamingbetrestserver\domain\service\Sc2MapsFacadeREST.java
+E:\Users\Andre\Documents\NetBeansProjects\Gaming-Bets-Server-Rest-Git\Gaming-Bets-Server\src\main\java\com\gabmingbets\gamingbetrestserver\domain\Country.java
+E:\Users\Andre\Documents\NetBeansProjects\Gaming-Bets-Server-Rest-Git\Gaming-Bets-Server\src\main\java\com\gabmingbets\gamingbetrestserver\microservices\GetSC2Data.java
+E:\Users\Andre\Documents\NetBeansProjects\Gaming-Bets-Server-Rest-Git\Gaming-Bets-Server\src\main\java\com\gabmingbets\gamingbetrestserver\microservices\Database.java
+E:\Users\Andre\Documents\NetBeansProjects\Gaming-Bets-Server-Rest-Git\Gaming-Bets-Server\src\main\java\com\gabmingbets\gamingbetrestserver\microservices\SC2Match.java
+E:\Users\Andre\Documents\NetBeansProjects\Gaming-Bets-Server-Rest-Git\Gaming-Bets-Server\src\main\java\com\gabmingbets\gamingbetrestserver\domain\Sc2AvailableBets.java
+E:\Users\Andre\Documents\NetBeansProjects\Gaming-Bets-Server-Rest-Git\Gaming-Bets-Server\src\main\java\com\gabmingbets\gamingbetrestserver\domain\User.java
+E:\Users\Andre\Documents\NetBeansProjects\Gaming-Bets-Server-Rest-Git\Gaming-Bets-Server\src\main\java\com\gabmingbets\gamingbetrestserver\domain\Sc2Matches.java
+E:\Users\Andre\Documents\NetBeansProjects\Gaming-Bets-Server-Rest-Git\Gaming-Bets-Server\src\main\java\com\gabmingbets\gamingbetrestserver\microservices\Evaluate_Bet_Lol.java
+E:\Users\Andre\Documents\NetBeansProjects\Gaming-Bets-Server-Rest-Git\Gaming-Bets-Server\src\main\java\com\gabmingbets\gamingbetrestserver\domain\service\Sc2TeamFacadeREST.java
+E:\Users\Andre\Documents\NetBeansProjects\Gaming-Bets-Server-Rest-Git\Gaming-Bets-Server\src\main\java\com\gabmingbets\gamingbetrestserver\domain\service\Sc2PlayerFacadeREST.java
+E:\Users\Andre\Documents\NetBeansProjects\Gaming-Bets-Server-Rest-Git\Gaming-Bets-Server\src\main\java\com\gabmingbets\gamingbetrestserver\domain\service\TicketFacadeREST.java
+E:\Users\Andre\Documents\NetBeansProjects\Gaming-Bets-Server-Rest-Git\Gaming-Bets-Server\src\main\java\com\gabmingbets\gamingbetrestserver\domain\service\AbstractFacade.java
+E:\Users\Andre\Documents\NetBeansProjects\Gaming-Bets-Server-Rest-Git\Gaming-Bets-Server\src\main\java\com\gabmingbets\gamingbetrestserver\microservices\Create_Bet_SC2.java
+E:\Users\Andre\Documents\NetBeansProjects\Gaming-Bets-Server-Rest-Git\Gaming-Bets-Server\src\main\java\com\gabmingbets\gamingbetrestserver\domain\Sc2Races.java
+E:\Users\Andre\Documents\NetBeansProjects\Gaming-Bets-Server-Rest-Git\Gaming-Bets-Server\src\main\java\com\gabmingbets\gamingbetrestserver\domain\Sc2Team.java
+E:\Users\Andre\Documents\NetBeansProjects\Gaming-Bets-Server-Rest-Git\Gaming-Bets-Server\src\main\java\com\gabmingbets\gamingbetrestserver\domain\service\ApplicationConfig.java
+E:\Users\Andre\Documents\NetBeansProjects\Gaming-Bets-Server-Rest-Git\Gaming-Bets-Server\src\main\java\com\gabmingbets\gamingbetrestserver\domain\service\UserFacadeREST.java
+E:\Users\Andre\Documents\NetBeansProjects\Gaming-Bets-Server-Rest-Git\Gaming-Bets-Server\src\main\java\com\gabmingbets\gamingbetrestserver\domain\Sc2Player.java
+E:\Users\Andre\Documents\NetBeansProjects\Gaming-Bets-Server-Rest-Git\Gaming-Bets-Server\src\main\java\com\gabmingbets\gamingbetrestserver\domain\service\CountryFacadeREST.java
+E:\Users\Andre\Documents\NetBeansProjects\Gaming-Bets-Server-Rest-Git\Gaming-Bets-Server\src\main\java\com\gabmingbets\gamingbetrestserver\domain\Gametyp.java
+E:\Users\Andre\Documents\NetBeansProjects\Gaming-Bets-Server-Rest-Git\Gaming-Bets-Server\src\main\java\com\gabmingbets\gamingbetrestserver\domain\Sc2Maps.java
+E:\Users\Andre\Documents\NetBeansProjects\Gaming-Bets-Server-Rest-Git\Gaming-Bets-Server\src\main\java\com\gabmingbets\gamingbetrestserver\domain\Sc2Tournament.java
+E:\Users\Andre\Documents\NetBeansProjects\Gaming-Bets-Server-Rest-Git\Gaming-Bets-Server\src\main\java\com\gabmingbets\gamingbetrestserver\domain\Ticket.java
