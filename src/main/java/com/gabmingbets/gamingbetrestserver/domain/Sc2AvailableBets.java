@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Sc2AvailableBets.findAll", query = "SELECT s FROM Sc2AvailableBets s"),
-    @NamedQuery(name = "Sc2AvailableBets.findAllNotFinished", query = "SELECT s FROM Sc2AvailableBets s, Sc2Matches m WHERE s.matchId.id = m.id and m.finished = 0"),
+    @NamedQuery(name = "Sc2AvailableBets.findAllNotFinished", query = "SELECT s FROM Sc2AvailableBets s, Sc2Matches m WHERE m.finished = 0 and s.matchId.id = m.id and m.tournamentId.idtournament = :idtournament"),
     @NamedQuery(name = "Sc2AvailableBets.findByIdsc2AvailableBets", query = "SELECT s FROM Sc2AvailableBets s WHERE s.idsc2AvailableBets = :idsc2AvailableBets")})
 public class Sc2AvailableBets implements Serializable {
 

@@ -10,6 +10,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -38,7 +39,7 @@ public class UserFacadeREST extends AbstractFacade<User> {
 
     @POST
     @Override
-    @Consumes({ MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     public void create(User entity) {
         super.create(entity);
     }
@@ -47,7 +48,16 @@ public class UserFacadeREST extends AbstractFacade<User> {
     @Path("{id}")
     @Consumes({ MediaType.APPLICATION_JSON})
     public void edit(@PathParam("id") Integer id, User entity) {
-        super.edit(entity);
+        Query q = em.createQuery("UPDATE User u SET u.userName = '"+entity.getUserName()+"', u.password='"+entity.getPassword()+"', u.email = '"+entity.getEmail()+"' WHERE u.id="+id+"");
+        q.executeUpdate();
+    }
+    
+    @PUT
+    @Path("score/{id}")
+    @Consumes({ MediaType.APPLICATION_JSON})
+    public void editScore(@PathParam("id") Integer id, User entity) {
+        Query q = em.createQuery("UPDATE User u SET u.score = "+entity.getScore()+" WHERE u.id="+id+"");
+        q.executeUpdate();
     }
 
     @DELETE
@@ -58,13 +68,13 @@ public class UserFacadeREST extends AbstractFacade<User> {
 
     @GET
     @Path("{id}")
-    @Produces({ MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public User find(@PathParam("id") Integer id) {
         return super.find(id);
     }
     
     @GET
-    @Path("/name/{name}")
+    @Path("name/{name}")
     @Produces(MediaType.APPLICATION_JSON)
     public User findByName(@PathParam("name") String name){
         TypedQuery<User> query = getEntityManager().createNamedQuery("User.findByUserName", User.class).setParameter("userName", name);
@@ -78,17 +88,17 @@ public class UserFacadeREST extends AbstractFacade<User> {
         TypedQuery<User> query = getEntityManager().createNamedQuery("User.getLeaderboard", User.class);
         return query.getResultList();
     }
-      
+
     @GET
     @Override
-    @Produces({ MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public List<User> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
-    @Produces({ MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public List<User> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
