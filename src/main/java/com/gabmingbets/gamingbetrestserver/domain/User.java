@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
-    @NamedQuery(name = "User.findByID", query = "SELECT u FROM User u WHERE u.iD = :iD"),
+    @NamedQuery(name = "User.findByID", query = "SELECT u FROM User u WHERE u.id = :id"),
     @NamedQuery(name = "User.findByUserName", query = "SELECT u FROM User u WHERE u.userName = :userName"),
     @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password"),
     @NamedQuery(name = "User.findByBets", query = "SELECT u FROM User u WHERE u.bets = :bets"),
@@ -45,8 +45,8 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "iD")
-    private Integer iD;
+    @Column(name = "id")
+    private Integer id;
     @Size(max = 45)
     @Column(name = "userName")
     private String userName;
@@ -74,21 +74,21 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(Integer iD) {
-        this.iD = iD;
+    public User(Integer id) {
+        this.id = id;
     }
 
-    public User(Integer iD, boolean active) {
-        this.iD = iD;
+    public User(Integer id, boolean active) {
+        this.id = id;
         this.active = active;
     }
 
-    public Integer getID() {
-        return iD;
+    public Integer getId() {
+        return id;
     }
 
-    public void setID(Integer iD) {
-        this.iD = iD;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getUserName() {
@@ -158,7 +158,7 @@ public class User implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (iD != null ? iD.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -169,7 +169,7 @@ public class User implements Serializable {
             return false;
         }
         User other = (User) object;
-        if ((this.iD == null && other.iD != null) || (this.iD != null && !this.iD.equals(other.iD))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -177,7 +177,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "com.gabmingbets.gamingbetrestserver.domain.User[ iD=" + iD + " ]";
+        return "com.gabmingbets.gamingbetrestserver.domain.User[ id=" + id + " ]";
     }
     
 }

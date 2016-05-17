@@ -10,6 +10,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -47,7 +48,16 @@ public class UserFacadeREST extends AbstractFacade<User> {
     @Path("{id}")
     @Consumes({ MediaType.APPLICATION_JSON})
     public void edit(@PathParam("id") Integer id, User entity) {
-        super.edit(entity);
+        Query q = em.createQuery("UPDATE User u SET u.userName = '"+entity.getUserName()+"', u.password='"+entity.getPassword()+"', u.email = '"+entity.getEmail()+"' WHERE u.id="+id+"");
+        q.executeUpdate();
+    }
+    
+    @PUT
+    @Path("score/{id}")
+    @Consumes({ MediaType.APPLICATION_JSON})
+    public void editScore(@PathParam("id") Integer id, User entity) {
+        Query q = em.createQuery("UPDATE User u SET u.score = "+entity.getScore()+" WHERE u.id="+id+"");
+        q.executeUpdate();
     }
 
     @DELETE
