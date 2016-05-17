@@ -28,10 +28,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
-    @NamedQuery(name = "User.findByID", query = "SELECT u FROM User u WHERE u.id = :id"),
+    @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id"),
     @NamedQuery(name = "User.findByUserName", query = "SELECT u FROM User u WHERE u.userName = :userName"),
     @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password"),
-    @NamedQuery(name = "User.findByBets", query = "SELECT u FROM User u WHERE u.bets = :bets"),
     @NamedQuery(name = "User.findByLoggedIn", query = "SELECT u FROM User u WHERE u.loggedIn = :loggedIn"),
     @NamedQuery(name = "User.findByAdmin", query = "SELECT u FROM User u WHERE u.admin = :admin"),
     @NamedQuery(name = "User.findByActive", query = "SELECT u FROM User u WHERE u.active = :active"),
@@ -53,9 +52,6 @@ public class User implements Serializable {
     @Size(max = 64)
     @Column(name = "password")
     private String password;
-    @Size(max = 45)
-    @Column(name = "bets")
-    private String bets;
     @Column(name = "loggedIn")
     private Boolean loggedIn;
     @Column(name = "admin")
@@ -105,14 +101,6 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getBets() {
-        return bets;
-    }
-
-    public void setBets(String bets) {
-        this.bets = bets;
     }
 
     public Boolean getLoggedIn() {

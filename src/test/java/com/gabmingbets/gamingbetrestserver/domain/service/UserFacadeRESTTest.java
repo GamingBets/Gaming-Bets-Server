@@ -5,7 +5,6 @@
  */
 package com.gabmingbets.gamingbetrestserver.domain.service;
 
-import com.gabmingbets.gamingbetrestserver.domain.User;
 import java.util.List;
 import javax.ejb.embeddable.EJBContainer;
 import org.junit.After;
