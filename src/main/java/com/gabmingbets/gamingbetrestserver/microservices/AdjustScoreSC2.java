@@ -39,7 +39,7 @@ public void run() {
 					temp.next();
 					
 					
-					System.out.println(query);
+					query = "UPDATE `gamingbets`.`user` SET `score`='"+(temp.getInt("score")+score_adjust)+"' WHERE `iD`='"+rs.getInt("user_id")+"';";
 					stmt = con.prepareStatement(query);
 					stmt.executeUpdate();
 				}
