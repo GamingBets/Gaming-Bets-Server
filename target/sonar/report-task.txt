@@ -1,5 +1,0 @@
-projectKey=GamingBetsServer:GamingBetsServer
-serverUrl=http://sonarqube.it.dh-karlsruhe.de
-dashboardUrl=http://sonarqube.it.dh-karlsruhe.de/dashboard/index/GamingBetsServer:GamingBetsServer
-ceTaskId=AVRWuMNaByBA63aaFaG6
-ceTaskUrl=http://sonarqube.it.dh-karlsruhe.de/api/ce/task?id=AVRWuMNaByBA63aaFaG6
