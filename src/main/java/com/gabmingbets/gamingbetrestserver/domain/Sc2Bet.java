@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Sc2Bet.findByStatus", query = "SELECT s FROM Sc2Bet s WHERE s.status = :status"),
     @NamedQuery(name = "Sc2Bet.findByProcessed", query = "SELECT s FROM Sc2Bet s WHERE s.processed = :processed"),
     @NamedQuery(name = "Sc2Bet.findByUserId", query = "SELECT s FROM Sc2Bet s WHERE s.userId = :userId")
-})
+    })
 public class Sc2Bet implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -60,6 +60,11 @@ public class Sc2Bet implements Serializable {
     @JoinColumn(name = "bet_id", referencedColumnName = "idsc2_available_bets")
     @ManyToOne(optional = false)
     private Sc2AvailableBets betId;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "input")
+    private Integer input;
 
     public Sc2Bet() {
     }
@@ -122,9 +127,15 @@ public class Sc2Bet implements Serializable {
         this.userId = userId;
     }
     
-    
+    public Integer getInput() {
+		return input;
+	}
 
-    @Override
+	public void setInput(Integer input) {
+		this.input = input;
+	}
+
+	@Override
     public int hashCode() {
         int hash = 0;
         hash += (idsc2Bet != null ? idsc2Bet.hashCode() : 0);
