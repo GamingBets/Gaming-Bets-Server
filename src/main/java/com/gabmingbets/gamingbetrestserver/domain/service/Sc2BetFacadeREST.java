@@ -64,11 +64,11 @@ public class Sc2BetFacadeREST extends AbstractFacade<Sc2Bet> {
     }
     
     @GET
-    @Path("/userId/{id}")
+    @Path("userId/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Sc2Bet findByUserId(@PathParam("id") Integer id){
+    public List<Sc2Bet> findByUserId(@PathParam("id") Integer id){
         TypedQuery<Sc2Bet> query = getEntityManager().createNamedQuery("Sc2Bet.findByUserId", Sc2Bet.class).setParameter("userId", id);
-        return query.getSingleResult();
+        return query.getResultList();
     }
     
     @GET
