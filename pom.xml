@@ -12,7 +12,9 @@
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>       
-        <skipTests>true</skipTests>  
+        <skipTests>true</skipTests>
+        <sonar.host.url>http://193.196.7.25</sonar.host.url>
+        <sonar.projectName>GamingBetsServer</sonar.projectName>
     </properties>
     
     <dependencies>
@@ -72,7 +74,8 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
-
+    
+    
     <build>
         <plugins>
             <plugin>
@@ -97,7 +100,36 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
-            
+            <plugin>
+               <groupId>org.glassfish.maven.plugin</groupId>
+               <artifactId>maven-glassfish-plugin</artifactId>
+               <configuration>
+                  <terse>true</terse>
+                  <echo>true</echo>
+                  <debug>true</debug>
+                  <glassfishDirectory>${glassfish.glassfishDirectory}</glassfishDirectory>
+                  <user>admin</user>
+                  <adminPassword>admin</adminPassword>
+                  <domain>
+                     <name>domain1</name>
+                     <host>134.255.218.20</host>
+                     <adminPort>4848</adminPort>
+                  </domain>
+                  <components>
+                    <component>
+                      <name>${project.artifactId}</name>  
+                 <artifact>${project.build.directory}/${project.build.finalName}.war</artifact>
+                    </component>
+                  </components>
+               </configuration>
+               <executions>
+                    <execution>
+                <goals>
+            <goal>deploy</goal>
+            </goals>
+            </execution>
+        </executions>
+         </plugin>
         </plugins>
     </build>
 
