@@ -107,7 +107,7 @@
                   <terse>true</terse>
                   <echo>true</echo>
                   <debug>true</debug>
-                  <glassfishDirectory>/or/root/opt/glassfish4</glassfishDirectory>
+                  <glassfishDirectory>//opt/glassfish4</glassfishDirectory>
                   <user>admin</user>
                   <adminPassword>admin</adminPassword>
                   <domain>
