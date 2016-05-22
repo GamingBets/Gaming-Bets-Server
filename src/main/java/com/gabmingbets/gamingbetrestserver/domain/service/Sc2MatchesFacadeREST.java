@@ -67,7 +67,7 @@ public class Sc2MatchesFacadeREST extends AbstractFacade<Sc2Matches> {
     @Path("newsFeed")
     @Produces({MediaType.APPLICATION_JSON})
     public List<Sc2Matches> getNewsFeed(){
-    	TypedQuery<Sc2Matches> query = getEntityManager().createNamedQuery("Sc2AvailableBets.findNewsFeed", Sc2Matches.class);
+    	TypedQuery<Sc2Matches> query = getEntityManager().createNamedQuery("Sc2Matches.findNewsFeed", Sc2Matches.class);
         return query.getResultList();
     	
     }
