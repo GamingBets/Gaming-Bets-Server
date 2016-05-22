@@ -38,6 +38,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Sc2Matches.findByDate", query = "SELECT s FROM Sc2Matches s WHERE s.date = :date"),
     @NamedQuery(name = "Sc2Matches.findByComment", query = "SELECT s FROM Sc2Matches s WHERE s.comment = :comment"),
     @NamedQuery(name = "Sc2Matches.findByBetCreated", query = "SELECT s FROM Sc2Matches s WHERE s.betCreated = :betCreated"),
+    @NamedQuery(name = "Sc2Matches.findNewsFeed", query = "SELECT s FROM Sc2Matches s ORDER BY s.last_updated DESC"),
     @NamedQuery(name = "Sc2Matches.findByFinished", query = "SELECT s FROM Sc2Matches s WHERE s.finished = :finished")})
 public class Sc2Matches implements Serializable {
 
@@ -59,6 +60,10 @@ public class Sc2Matches implements Serializable {
     @NotNull
     @Column(name = "bet_created")
     private int betCreated;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "last_updated")
+    private long last_updated;    
     @Column(name = "finished")
     private Integer finished;
     @JoinColumn(name = "type", referencedColumnName = "idGameTyp")
@@ -77,7 +82,16 @@ public class Sc2Matches implements Serializable {
     public Sc2Matches() {
     }
 
-    public Sc2Matches(Integer id) {
+    
+    public long getLast_updated() {
+		return last_updated;
+	}
+
+	public void setLast_updated(long last_updated) {
+		this.last_updated = last_updated;
+	}
+
+	public Sc2Matches(Integer id) {
         this.id = id;
     }
 
