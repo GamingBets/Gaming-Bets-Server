@@ -10,6 +10,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -60,6 +61,15 @@ public class Sc2MatchesFacadeREST extends AbstractFacade<Sc2Matches> {
     @Produces({MediaType.APPLICATION_JSON})
     public Sc2Matches find(@PathParam("id") Integer id) {
         return super.find(id);
+    }
+    
+    @GET
+    @Path("newsFeed")
+    @Produces({MediaType.APPLICATION_JSON})
+    public List<Sc2Matches> getNewsFeed(){
+    	TypedQuery<Sc2Matches> query = getEntityManager().createNamedQuery("Sc2AvailableBets.findNewsFeed", Sc2Matches.class);
+        return query.getResultList();
+    	
     }
 
     @GET
