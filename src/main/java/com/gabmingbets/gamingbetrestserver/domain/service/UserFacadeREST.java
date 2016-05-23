@@ -48,7 +48,7 @@ public class UserFacadeREST extends AbstractFacade<User> {
     @Path("{id}")
     @Consumes({ MediaType.APPLICATION_JSON})
     public void edit(@PathParam("id") Integer id, User entity) {
-        Query q = em.createQuery("UPDATE User u SET u.userName = '"+entity.getUserName()+"', u.password='"+entity.getPassword()+"', u.email = '"+entity.getEmail()+"' WHERE u.id="+id+"");
+        Query q = em.createQuery("UPDATE User u SET u.userName = '"+entity.getUserName()+"', u.password='"+entity.getPassword()+"', u.email = '"+entity.getEmail()+"', u.profilePic = " + entity.getProfilePic()+ ", u.unlocks = "+entity.getUnlocks()+" WHERE u.id="+id+"");
         q.executeUpdate();
     }
     
@@ -59,7 +59,7 @@ public class UserFacadeREST extends AbstractFacade<User> {
         Query q = em.createQuery("UPDATE User u SET u.score = "+entity.getScore()+" WHERE u.id="+id+"");
         q.executeUpdate();
     }
-
+    
     @DELETE
     @Path("{id}")
     public void remove(@PathParam("id") Integer id) {

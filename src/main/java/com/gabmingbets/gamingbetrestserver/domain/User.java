@@ -67,6 +67,13 @@ public class User implements Serializable {
     @Column(name = "score")
     private Integer score;
 
+    @Column(name="profile_pic")
+    @Basic(optional = false)
+    private int profilePic;
+    
+    @Column(name="unlocks")
+    @Basic(optional = false)
+    private int unlocks;
     public User() {
     }
 
@@ -143,7 +150,23 @@ public class User implements Serializable {
         this.score = score;
     }
 
-    @Override
+	public int getProfilePic() {
+		return profilePic;
+	}
+
+	public void setProfilePic(int profilePic) {
+		this.profilePic = profilePic;
+	}
+
+	public int getUnlocks() {
+		return unlocks;
+	}
+
+	public void setUnlocks(int unlocks) {
+		this.unlocks = unlocks;
+	}
+
+	@Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
