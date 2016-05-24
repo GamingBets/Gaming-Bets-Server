@@ -29,7 +29,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Ticket.findAll", query = "SELECT t FROM Ticket t"),
     @NamedQuery(name = "Ticket.findById", query = "SELECT t FROM Ticket t WHERE t.id = :id"),
     @NamedQuery(name = "Ticket.findByUserId", query = "SELECT t FROM Ticket t WHERE t.userId = :userId"),
-    @NamedQuery(name = "Ticket.findByContent", query = "SELECT t FROM Ticket t WHERE t.content = :content"),
     @NamedQuery(name = "Ticket.findByStatus", query = "SELECT t FROM Ticket t WHERE t.status = :status"),
     @NamedQuery(name = "Ticket.findByDate", query = "SELECT t FROM Ticket t WHERE t.date = :date")})
 public class Ticket implements Serializable {
@@ -42,9 +41,6 @@ public class Ticket implements Serializable {
     private Integer id;
     @Column(name = "userId")
     private Integer userId;
-    @Size(max = 200)
-    @Column(name = "content")
-    private String content;
     @Column(name = "status")
     private Integer status;
     @Size(max = 45)
@@ -72,14 +68,6 @@ public class Ticket implements Serializable {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
     }
 
     public Integer getStatus() {

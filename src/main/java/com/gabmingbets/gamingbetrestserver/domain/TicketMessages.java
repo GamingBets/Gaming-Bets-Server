@@ -43,6 +43,9 @@ public class TicketMessages implements Serializable {
     @Size(max = 45)
     @Column(name = "datetime")
     private String datetime;
+    @Basic(optional = false)
+    @Column(name = "user_id")
+    private Integer userId;
     @Lob
     @Size(max = 2147483647)
     @Column(name = "content")
@@ -50,9 +53,7 @@ public class TicketMessages implements Serializable {
     @JoinColumn(name = "ticket_id", referencedColumnName = "id")
     @ManyToOne
     private Ticket ticketId;
-    @Basic(optional = false)
-    @Column(name = "user_id")
-    private Integer userId;
+    
     
 
     public TicketMessages() {
