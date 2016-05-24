@@ -40,6 +40,7 @@ public class ApplicationConfig extends Application {
         resources.add(com.gabmingbets.gamingbetrestserver.domain.service.Sc2TeamFacadeREST.class);
         resources.add(com.gabmingbets.gamingbetrestserver.domain.service.Sc2TournamentFacadeREST.class);
         resources.add(com.gabmingbets.gamingbetrestserver.domain.service.TicketFacadeREST.class);
+        resources.add(com.gabmingbets.gamingbetrestserver.domain.service.TicketMessagesFacadeREST.class);
         resources.add(com.gabmingbets.gamingbetrestserver.domain.service.UserFacadeREST.class);
     }
     

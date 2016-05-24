@@ -5,7 +5,6 @@
  */
 package com.gabmingbets.gamingbetrestserver.domain.service;
 
-import com.gabmingbets.gamingbetrestserver.domain.Ticket;
 import com.gabmingbets.gamingbetrestserver.domain.TicketMessages;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -26,33 +25,27 @@ import javax.ws.rs.core.MediaType;
  * @author Andre
  */
 @Stateless
-@Path("ticket")
-public class TicketFacadeREST extends AbstractFacade<Ticket> {
+@Path("ticketmessages")
+public class TicketMessagesFacadeREST extends AbstractFacade<TicketMessages> {
 
     @PersistenceContext(unitName = "com.gabmingbets_gamingBetRestServer_war_1.0PU")
     private EntityManager em;
 
-    public TicketFacadeREST() {
-        super(Ticket.class);
+    public TicketMessagesFacadeREST() {
+        super(TicketMessages.class);
     }
 
     @POST
     @Override
     @Consumes({MediaType.APPLICATION_JSON})
-    public void create(Ticket entity) {
-        TicketMessagesFacadeREST ticket = new TicketMessagesFacadeREST();
-        TicketMessages message = new TicketMessages();
-        message.setContent(entity.getContent());
-        message.setDatetime(entity.getDate());
-        message.setUserId(entity.getUserId());
-        ticket.create(message);
+    public void create(TicketMessages entity) {
         super.create(entity);
     }
 
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") Integer id, Ticket entity) {
+    public void edit(@PathParam("id") Integer id, TicketMessages entity) {
         super.edit(entity);
     }
 
@@ -65,21 +58,21 @@ public class TicketFacadeREST extends AbstractFacade<Ticket> {
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_JSON})
-    public Ticket find(@PathParam("id") Integer id) {
+    public TicketMessages find(@PathParam("id") Integer id) {
         return super.find(id);
     }
 
     @GET
     @Override
     @Produces({MediaType.APPLICATION_JSON})
-    public List<Ticket> findAll() {
+    public List<TicketMessages> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({MediaType.APPLICATION_JSON})
-    public List<Ticket> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<TicketMessages> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
 
