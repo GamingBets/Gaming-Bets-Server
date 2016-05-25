@@ -73,7 +73,7 @@ public class User implements Serializable {
     
     @Column(name="unlocks")
     @Basic(optional = false)
-    private int unlocks;
+    private String unlocks;
     public User() {
     }
 
@@ -158,11 +158,12 @@ public class User implements Serializable {
 		this.profilePic = profilePic;
 	}
 
-	public int getUnlocks() {
+
+	public String getUnlocks() {
 		return unlocks;
 	}
 
-	public void setUnlocks(int unlocks) {
+	public void setUnlocks(String unlocks) {
 		this.unlocks = unlocks;
 	}
 
