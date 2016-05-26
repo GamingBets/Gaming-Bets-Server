@@ -67,7 +67,7 @@ public class UserFacadeREST extends AbstractFacade<User> {
     }
 
     @GET
-    @Path("{id}")
+    @Path("/byid/{id}")
     @Produces({MediaType.APPLICATION_JSON})
     public User find(@PathParam("id") Integer id) {
         return super.find(id);
