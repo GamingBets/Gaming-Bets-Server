@@ -119,8 +119,8 @@
 							<cargo.hostname>localhost</cargo.hostname>
 							<cargo.remote.username>admin</cargo.remote.username>
 							<cargo.remote.password>admin</cargo.remote.password>
-							<cargo.remote.port>80</cargo.remote.port>
-							<cargo.glassfish.domain.name>/myapp</cargo.glassfish.domain.name>
+							<cargo.remote.port>4848</cargo.remote.port>
+							<cargo.glassfish.domain.name>/gamingBetRestServer</cargo.glassfish.domain.name>
 						</properties>
 					</configuration>
 					<deployables>
@@ -129,7 +129,7 @@
 							<artifactId>${project.artifactId}</artifactId>
 							<type>war</type>
 							<properties>
-								<context>/myapp</context>
+								<context>/gaming</context>
 							</properties>
 						</deployable>
 					</deployables>
