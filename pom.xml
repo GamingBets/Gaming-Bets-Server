@@ -129,7 +129,7 @@
 							<artifactId>${project.artifactId}</artifactId>
 							<type>war</type>
 							<properties>
-								<context>/gaming</context>
+								<context>/gamingBetRestServer</context>
 							</properties>
 						</deployable>
 					</deployables>
