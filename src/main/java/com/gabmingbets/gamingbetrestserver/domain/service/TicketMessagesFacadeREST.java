@@ -5,8 +5,12 @@
  */
 package com.gabmingbets.gamingbetrestserver.domain.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gabmingbets.gamingbetrestserver.domain.TicketMessages;
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -40,6 +44,23 @@ public class TicketMessagesFacadeREST extends AbstractFacade<TicketMessages> {
     @Consumes({MediaType.APPLICATION_JSON})
     public void create(TicketMessages entity) {
         super.create(entity);
+    }
+    
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("create")
+    public void createMessage(String messagejson) {
+        
+        try {
+            TicketMessages message = new TicketMessages();
+            ObjectMapper mapper = new ObjectMapper();
+            message = mapper.readValue(messagejson, TicketMessages.class);
+            
+            getEntityManager().persist(message);
+        } catch (IOException ex) {
+            Logger.getLogger(TicketMessagesFacadeREST.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     @PUT
