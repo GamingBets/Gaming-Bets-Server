@@ -6,6 +6,7 @@
 package com.gabmingbets.gamingbetrestserver.domain.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gabmingbets.gamingbetrestserver.domain.Ticket;
 import com.gabmingbets.gamingbetrestserver.domain.TicketMessages;
 import java.io.IOException;
 import java.util.List;
@@ -23,6 +24,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import org.json.JSONObject;
 
 /**
  *
@@ -49,18 +51,28 @@ public class TicketMessagesFacadeREST extends AbstractFacade<TicketMessages> {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("create")
-    public void createMessage(String messagejson) {
+    public String createMessage(TicketMessages entity) {
+/*        
+        TicketMessages message = new TicketMessages();
+        JSONObject obj = new JSONObject(messagejson);
         
-        try {
-            TicketMessages message = new TicketMessages();
-            ObjectMapper mapper = new ObjectMapper();
-            message = mapper.readValue(messagejson, TicketMessages.class);
-            
-            getEntityManager().persist(message);
-        } catch (IOException ex) {
-            Logger.getLogger(TicketMessagesFacadeREST.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        message.setContent(obj.getString("content"));
+        message.setDatetime(obj.getString("datetime"));
         
+        JSONObject ticketobj = obj.getJSONObject("ticketId");
+        Ticket ticket = new Ticket();
+        ticket.setDate(ticketobj.getString("date"));
+        ticket.setId(ticketobj.getInt("id"));
+        ticket.setStatus(2);
+        ticket.setUserId(ticketobj.getInt("userId"));
+        
+        message.setTicketId(ticket);
+        message.setUserId(obj.getInt("userId"));
+        
+        getEntityManager().persist(message);
+        */
+        return entity.getDatetime();
+                
     }
 
     @PUT
