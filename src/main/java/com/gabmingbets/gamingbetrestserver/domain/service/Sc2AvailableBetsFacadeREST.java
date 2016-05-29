@@ -10,6 +10,7 @@ import com.gabmingbets.gamingbetrestserver.domain.Sc2Matches;
 import com.gabmingbets.gamingbetrestserver.domain.Sc2Player;
 import com.gabmingbets.gamingbetrestserver.domain.Sc2Tournament;
 import com.gabmingbets.gamingbetrestserver.domain.User;
+import com.gabmingbets.gamingbetrestserver.microservices.MicroserviceHandler;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -71,6 +72,7 @@ public class Sc2AvailableBetsFacadeREST extends AbstractFacade<Sc2AvailableBets>
     @Path("notFinished/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Sc2AvailableBets> findAllNotFinished(@PathParam("id") Integer id){
+        MicroserviceHandler.createAvailableBetsSC2();
         TypedQuery<Sc2AvailableBets> query = getEntityManager().createNamedQuery("Sc2AvailableBets.findAllNotFinished", Sc2AvailableBets.class).setParameter("idtournament", id);
         return query.getResultList();
     }

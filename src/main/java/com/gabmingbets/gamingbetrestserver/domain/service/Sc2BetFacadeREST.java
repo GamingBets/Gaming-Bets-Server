@@ -6,6 +6,7 @@
 package com.gabmingbets.gamingbetrestserver.domain.service;
 
 import com.gabmingbets.gamingbetrestserver.domain.Sc2Bet;
+import com.gabmingbets.gamingbetrestserver.microservices.MicroserviceHandler;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -67,6 +68,7 @@ public class Sc2BetFacadeREST extends AbstractFacade<Sc2Bet> {
     @Path("userId/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Sc2Bet> findByUserId(@PathParam("id") Integer id){
+        MicroserviceHandler.evaluateBetsSC2();
         TypedQuery<Sc2Bet> query = getEntityManager().createNamedQuery("Sc2Bet.findByUserId", Sc2Bet.class).setParameter("userId", id);
         return query.getResultList();
     }
