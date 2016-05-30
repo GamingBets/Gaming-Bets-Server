@@ -6,14 +6,11 @@
 package com.gabmingbets.gamingbetrestserver.domain.service;
 
 import com.gabmingbets.gamingbetrestserver.domain.Ticket;
-import com.gabmingbets.gamingbetrestserver.domain.TicketMessages;
-import com.mysql.jdbc.log.Log;
-import java.math.BigInteger;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -43,7 +40,7 @@ public class TicketFacadeREST extends AbstractFacade<Ticket> {
     @Override
     @Consumes({MediaType.APPLICATION_JSON})
     public void create(Ticket entity) {
-      super.create(entity);
+        super.create(entity);
     }
     
     @POST
@@ -74,8 +71,15 @@ public class TicketFacadeREST extends AbstractFacade<Ticket> {
     public Ticket find(@PathParam("id") Integer id) {
         return super.find(id);
     }
-    
 
+    @GET
+    @Path("userId/{id}")
+    @Produces({MediaType.APPLICATION_JSON})
+    public List<Ticket> findByUserId(@PathParam("id") Integer id) {
+        TypedQuery<Ticket> query = getEntityManager().createNamedQuery("Ticket.findByUserId", Ticket.class).setParameter("userId", id);
+        return query.getResultList();
+    }
+    
     @GET
     @Override
     @Produces({MediaType.APPLICATION_JSON})

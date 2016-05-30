@@ -1,15 +1,54 @@
 package com.gabmingbets.gamingbetrestserver.microservices;
 
+import com.gabmingbets.gamingbetrestserver.domain.Sc2Bet;
+import com.gabmingbets.gamingbetrestserver.domain.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 public class AdjustScoreSC2 {
-	
+    
+    @PersistenceContext(unitName = "com.gabmingbets_gamingBetRestServer_war_1.0PU")
+    private EntityManager em;
+    
 public void run() {
 		
-		String query;
+    TypedQuery<Sc2Bet> query = em.createNamedQuery("Sc2Bet.findByProcessed", Sc2Bet.class).setParameter("processed", em);
+    List<Sc2Bet> bets = new ArrayList();
+    int counter = 0;
+    bets = query.getResultList();
+    
+    for(int i = 0; i < bets.size(); i++) {
+        if(bets.get(i).getStatus()==3) {
+            int score_adjust = 0;
+            if(bets.get(i).getInput()==0) {
+                score_adjust = 10;
+            }else {
+                score_adjust = bets.get(i).getInput();
+                score_adjust *= 3;
+            }
+            TypedQuery<User> query2 = em.createNamedQuery("User.findById", User.class).setParameter("id", bets.get(i).getUserId());
+            User user = query2.getSingleResult();
+            
+            score_adjust += user.getScore();
+            
+            Query q = em.createQuery("UPDATE User u SET u.score = " + score_adjust + "WHERE u.id=" + user.getId() +"");
+            q.executeUpdate();
+        }
+        Query q = em.createQuery("UPDATE Sc2Bet b SET b.processed = 1 WHERE b.idsc2Bet = " + bets.get(i).getIdsc2Bet() + "");
+        q.executeUpdate();
+        
+        counter++;
+    }
+    System.out.println(""+counter+" scores were updated!");
+    /*String query;
 		PreparedStatement stmt;
 		ResultSet rs;
 		Connection con = Database.connect();
@@ -52,7 +91,7 @@ public void run() {
 			e.printStackTrace();
 
 		}
-		System.out.println(""+counter+" scores were updated!");
+		System.out.println(""+counter+" scores were updated!");*/
 		
 	}
 

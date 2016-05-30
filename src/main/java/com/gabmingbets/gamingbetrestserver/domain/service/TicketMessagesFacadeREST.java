@@ -5,16 +5,12 @@
  */
 package com.gabmingbets.gamingbetrestserver.domain.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gabmingbets.gamingbetrestserver.domain.Ticket;
 import com.gabmingbets.gamingbetrestserver.domain.TicketMessages;
-import java.io.IOException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -24,7 +20,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import org.json.JSONObject;
 
 /**
  *
@@ -47,33 +42,6 @@ public class TicketMessagesFacadeREST extends AbstractFacade<TicketMessages> {
     public void create(TicketMessages entity) {
         super.create(entity);
     }
-    
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("create")
-    public String createMessage(TicketMessages entity) {
-/*        
-        TicketMessages message = new TicketMessages();
-        JSONObject obj = new JSONObject(messagejson);
-        
-        message.setContent(obj.getString("content"));
-        message.setDatetime(obj.getString("datetime"));
-        
-        JSONObject ticketobj = obj.getJSONObject("ticketId");
-        Ticket ticket = new Ticket();
-        ticket.setDate(ticketobj.getString("date"));
-        ticket.setId(ticketobj.getInt("id"));
-        ticket.setStatus(2);
-        ticket.setUserId(ticketobj.getInt("userId"));
-        
-        message.setTicketId(ticket);
-        message.setUserId(obj.getInt("userId"));
-        
-        getEntityManager().persist(message);
-        */
-        return entity.getDatetime();
-                
-    }
 
     @PUT
     @Path("{id}")
@@ -93,6 +61,14 @@ public class TicketMessagesFacadeREST extends AbstractFacade<TicketMessages> {
     @Produces({MediaType.APPLICATION_JSON})
     public TicketMessages find(@PathParam("id") Integer id) {
         return super.find(id);
+    }
+    
+    @GET
+    @Path("ticketId/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<TicketMessages> findByTicketId(@PathParam("id") Integer id) {
+        TypedQuery<TicketMessages> query = getEntityManager().createNamedQuery("TicketMessages.findByTicketId", TicketMessages.class).setParameter("ticketId", id);
+        return query.getResultList();
     }
 
     @GET

@@ -30,8 +30,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TicketMessages.findAll", query = "SELECT t FROM TicketMessages t"),
-    @NamedQuery(name = "TicketMessages.findById", query = "SELECT t FROM TicketMessages t WHERE t.id = :id ORDER by t.datetime"),
-    @NamedQuery(name = "TicketMessages.findByDatetime", query = "SELECT t FROM TicketMessages t WHERE t.datetime = :datetime")})
+    @NamedQuery(name = "TicketMessages.findById", query = "SELECT t FROM TicketMessages t WHERE t.id = :id"),
+    @NamedQuery(name = "TicketMessages.findByUserId", query = "SELECT t FROM TicketMessages t WHERE t.userId = :userId"),
+    @NamedQuery(name = "TicketMessages.findByDatetime", query = "SELECT t FROM TicketMessages t WHERE t.datetime = :datetime"),
+    @NamedQuery(name = "TicketMessages.findByTicketId", query = "SELECT t FROM TicketMessages t WHERE t.ticketId.id = :ticketId ORDER BY t.datetime")})
 public class TicketMessages implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -40,12 +42,11 @@ public class TicketMessages implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    @Column(name = "user_id")
+    private Integer userId;
     @Size(max = 45)
     @Column(name = "datetime")
     private String datetime;
-    @Basic(optional = false)
-    @Column(name = "user_id")
-    private Integer userId;
     @Lob
     @Size(max = 2147483647)
     @Column(name = "content")
@@ -53,8 +54,6 @@ public class TicketMessages implements Serializable {
     @JoinColumn(name = "ticket_id", referencedColumnName = "id")
     @ManyToOne
     private Ticket ticketId;
-    
-    
 
     public TicketMessages() {
     }
@@ -67,16 +66,16 @@ public class TicketMessages implements Serializable {
         return id;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Integer getUserId() {
         return userId;
     }
 
     public void setUserId(Integer userId) {
         this.userId = userId;
-    }
-    
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getDatetime() {
