@@ -10,6 +10,8 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -37,16 +39,26 @@ public class TicketFacadeREST extends AbstractFacade<Ticket> {
 
     @POST
     @Override
-    @Consumes({ MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     public void create(Ticket entity) {
         super.create(entity);
+    }
+    
+    @POST
+    @Path("createticket")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Ticket createTicket(Ticket entity) {
+        super.create(entity);
+        
+        return entity;
     }
 
     @PUT
     @Path("{id}")
-    @Consumes({ MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     public void edit(@PathParam("id") Integer id, Ticket entity) {
-        super.edit(entity);
+        Query q = em.createQuery("UPDATE Ticket t SET t.status="+entity.getStatus()+" WHERE t.id = " + entity.getId() +"");
+        q.executeUpdate();
     }
 
     @DELETE
@@ -57,21 +69,37 @@ public class TicketFacadeREST extends AbstractFacade<Ticket> {
 
     @GET
     @Path("{id}")
-    @Produces({ MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public Ticket find(@PathParam("id") Integer id) {
         return super.find(id);
     }
 
     @GET
+    @Path("userId/{id}")
+    @Produces({MediaType.APPLICATION_JSON})
+    public List<Ticket> findByUserId(@PathParam("id") Integer id) {
+        TypedQuery<Ticket> query = getEntityManager().createNamedQuery("Ticket.findByUserId", Ticket.class).setParameter("userId", id);
+        return query.getResultList();
+    }
+    
+    @GET
+    @Path("open")
+    @Produces({MediaType.APPLICATION_JSON})
+    public List<Ticket> findOpen() {
+        TypedQuery<Ticket> query = getEntityManager().createNamedQuery("Ticket.findOpen", Ticket.class);
+        return query.getResultList();
+    }
+    
+    @GET
     @Override
-    @Produces({ MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public List<Ticket> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
-    @Produces({ MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public List<Ticket> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }

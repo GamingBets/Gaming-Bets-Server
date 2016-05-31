@@ -1,13 +1,15 @@
 package com.gabmingbets.gamingbetrestserver.microservices;
 
+import com.gabmingbets.gamingbetrestserver.domain.Sc2Bet;
+import com.gabmingbets.gamingbetrestserver.domain.service.Sc2BetFacadeREST;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class CreateBet {
 	
-	public static boolean InsertBet(SC2Bet bet){
-		
+	public static boolean InsertBet(Sc2Bet bet){
+		/*
 		Connection con = Database.connect();
 		PreparedStatement stmt;
 		
@@ -20,8 +22,10 @@ public class CreateBet {
 			return false;
 		}
 		return true;
-		
-		
+		*/            
+            new Sc2BetFacadeREST().create(bet);
+            return true;
+               
 
 	}
 

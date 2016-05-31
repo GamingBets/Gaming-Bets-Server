@@ -12,6 +12,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -23,16 +26,15 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Andre
  */
 @Entity
-@Table(name = "ticket")
+@Table(name = "ticket_messages")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Ticket.findAll", query = "SELECT t FROM Ticket t"),
-    @NamedQuery(name = "Ticket.findById", query = "SELECT t FROM Ticket t WHERE t.id = :id"),
-    @NamedQuery(name = "Ticket.findByUserId", query = "SELECT t FROM Ticket t WHERE t.userId = :userId AND t.status!=0"),
-    @NamedQuery(name = "Ticket.findByStatus", query = "SELECT t FROM Ticket t WHERE t.status = :status"),
-    @NamedQuery(name = "Ticket.findByDate", query = "SELECT t FROM Ticket t WHERE t.date = :date"),
-    @NamedQuery(name = "Ticket.findOpen", query = "SELECT t FROM Ticket t WHERE t.status !=0")})
-public class Ticket implements Serializable {
+    @NamedQuery(name = "TicketMessages.findAll", query = "SELECT t FROM TicketMessages t"),
+    @NamedQuery(name = "TicketMessages.findById", query = "SELECT t FROM TicketMessages t WHERE t.id = :id"),
+    @NamedQuery(name = "TicketMessages.findByUserId", query = "SELECT t FROM TicketMessages t WHERE t.userId = :userId"),
+    @NamedQuery(name = "TicketMessages.findByDatetime", query = "SELECT t FROM TicketMessages t WHERE t.datetime = :datetime"),
+    @NamedQuery(name = "TicketMessages.findByTicketId", query = "SELECT t FROM TicketMessages t WHERE t.ticketId.id = :ticketId ORDER BY t.datetime")})
+public class TicketMessages implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -40,18 +42,23 @@ public class Ticket implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Column(name = "userId")
+    @Column(name = "user_id")
     private Integer userId;
-    @Column(name = "status")
-    private Integer status;
     @Size(max = 45)
-    @Column(name = "date")
-    private String date;
+    @Column(name = "datetime")
+    private String datetime;
+    @Lob
+    @Size(max = 2147483647)
+    @Column(name = "content")
+    private String content;
+    @JoinColumn(name = "ticket_id", referencedColumnName = "id")
+    @ManyToOne
+    private Ticket ticketId;
 
-    public Ticket() {
+    public TicketMessages() {
     }
 
-    public Ticket(Integer id) {
+    public TicketMessages(Integer id) {
         this.id = id;
     }
 
@@ -71,20 +78,28 @@ public class Ticket implements Serializable {
         this.userId = userId;
     }
 
-    public Integer getStatus() {
-        return status;
+    public String getDatetime() {
+        return datetime;
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setDatetime(String datetime) {
+        this.datetime = datetime;
     }
 
-    public String getDate() {
-        return date;
+    public String getContent() {
+        return content;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Ticket getTicketId() {
+        return ticketId;
+    }
+
+    public void setTicketId(Ticket ticketId) {
+        this.ticketId = ticketId;
     }
 
     @Override
@@ -97,10 +112,10 @@ public class Ticket implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Ticket)) {
+        if (!(object instanceof TicketMessages)) {
             return false;
         }
-        Ticket other = (Ticket) object;
+        TicketMessages other = (TicketMessages) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -109,7 +124,7 @@ public class Ticket implements Serializable {
 
     @Override
     public String toString() {
-        return "com.gabmingbets.gamingbetrestserver.domain.Ticket[ id=" + id + " ]";
+        return "com.gabmingbets.gamingbetrestserver.domain.TicketMessages[ id=" + id + " ]";
     }
     
 }
