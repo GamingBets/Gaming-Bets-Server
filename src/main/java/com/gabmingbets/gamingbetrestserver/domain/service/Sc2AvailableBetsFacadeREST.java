@@ -72,7 +72,7 @@ public class Sc2AvailableBetsFacadeREST extends AbstractFacade<Sc2AvailableBets>
     @Path("notFinished/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Sc2AvailableBets> findAllNotFinished(@PathParam("id") Integer id){
-        MicroserviceHandler.createAvailableBetsSC2();
+        //MicroserviceHandler.createAvailableBetsSC2();
         TypedQuery<Sc2AvailableBets> query = getEntityManager().createNamedQuery("Sc2AvailableBets.findAllNotFinished", Sc2AvailableBets.class).setParameter("idtournament", id);
         return query.getResultList();
     }
