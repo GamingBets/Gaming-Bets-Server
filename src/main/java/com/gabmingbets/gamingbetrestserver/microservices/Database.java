@@ -20,7 +20,7 @@ public class Database {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
 
-            String name = "GamingBets";
+            String name = "gamingbets";
             String user = "gameBet";
             String password = "gamebet15";
 
