@@ -20,10 +20,11 @@ public class Evaluate_Bet_SC2 {
 	
             
             int counter = 0;
-
+            System.out.println("Start EvaluateBet");
             TypedQuery<Sc2Bet> query = em.createNamedQuery("Sc2Bet.findAllMatchEndedNotEvaluated", Sc2Bet.class);
             List<Sc2Bet> bets = new ArrayList();
             bets = query.getResultList();
+                    System.out.println("result EvaluateBet");
 
             boolean player1_won = false;
 
