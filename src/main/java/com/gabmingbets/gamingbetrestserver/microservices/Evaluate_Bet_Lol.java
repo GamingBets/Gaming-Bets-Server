@@ -31,6 +31,8 @@ public class Evaluate_Bet_Lol {
 				stmt.executeUpdate();
 				counter++;
 			}
+                        stmt.close();
+                        con.close();
 		} catch (SQLException e) {
 
 		}

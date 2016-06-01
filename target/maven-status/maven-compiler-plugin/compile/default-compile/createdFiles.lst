@@ -1,0 +1,13 @@
+com\gabmingbets\gamingbetrestserver\domain\Sc2Matches_.class
+com\gabmingbets\gamingbetrestserver\domain\Sc2AvailableBets_.class
+com\gabmingbets\gamingbetrestserver\domain\Sc2Tournament_.class
+com\gabmingbets\gamingbetrestserver\domain\Gametyp_.class
+com\gabmingbets\gamingbetrestserver\domain\Sc2Maps_.class
+com\gabmingbets\gamingbetrestserver\domain\Sc2Bet_.class
+com\gabmingbets\gamingbetrestserver\domain\Country_.class
+com\gabmingbets\gamingbetrestserver\domain\Sc2Team_.class
+com\gabmingbets\gamingbetrestserver\domain\Sc2Player_.class
+com\gabmingbets\gamingbetrestserver\domain\Ticket_.class
+com\gabmingbets\gamingbetrestserver\domain\TicketMessages_.class
+com\gabmingbets\gamingbetrestserver\domain\User_.class
+com\gabmingbets\gamingbetrestserver\domain\Sc2Races_.class

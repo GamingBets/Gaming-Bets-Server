@@ -21,7 +21,7 @@ public class Create_Available_Bets_SC2 {
 
 	public Create_Available_Bets_SC2() {
 		dateOfLastExecute = getDateOfLastExecuteFromDB();
-		this.con = Database.connect();
+		//this.con = Database.connect();
 	}
 
 	public void run() {

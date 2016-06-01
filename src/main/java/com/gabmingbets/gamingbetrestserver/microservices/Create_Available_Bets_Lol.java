@@ -32,14 +32,18 @@ public class Create_Available_Bets_Lol {
 				stmt.executeUpdate();
 				
 				i++;
-				
+				 
 			}
+                        this.con.close();
+                        stmt.close();
 		System.out.println(i+" rows affected!");
 		System.out.println("Finished!");
+                
 		} catch (SQLException e) {
 			//TODO Exception Handling
 			e.printStackTrace();
 		}
+               
 
 	}
 
