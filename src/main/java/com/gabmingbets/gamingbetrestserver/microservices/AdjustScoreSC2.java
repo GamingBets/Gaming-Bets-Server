@@ -19,7 +19,7 @@ public class AdjustScoreSC2 {
     private EntityManager em;
     
 public void run() {
-		
+	/*	
     TypedQuery<Sc2Bet> query = em.createNamedQuery("Sc2Bet.findByProcessed", Sc2Bet.class).setParameter("processed", em);
     List<Sc2Bet> bets = new ArrayList();
     int counter = 0;
@@ -47,8 +47,8 @@ public void run() {
         
         counter++;
     }
-    System.out.println(""+counter+" scores were updated!");
-    /*String query;
+    System.out.println(""+counter+" scores were updated!");*/
+    /**/String query;
 		PreparedStatement stmt;
 		ResultSet rs;
 		Connection con = Database.connect();
@@ -91,7 +91,7 @@ public void run() {
 			e.printStackTrace();
 
 		}
-		System.out.println(""+counter+" scores were updated!");*/
+		System.out.println(""+counter+" scores were updated!");/**/
 		
 	}
 

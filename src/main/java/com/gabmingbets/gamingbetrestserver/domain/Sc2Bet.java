@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Sc2Bet.findByStatus", query = "SELECT s FROM Sc2Bet s WHERE s.status = :status"),
     @NamedQuery(name = "Sc2Bet.findByProcessed", query = "SELECT s FROM Sc2Bet s WHERE s.processed = :processed"),
     @NamedQuery(name = "Sc2Bet.findByUserId", query = "SELECT s FROM Sc2Bet s WHERE s.userId = :userId"), 
-    @NamedQuery(name = "Sc2Bet.findAllMatchEndedNotEvaluated", query = "SELECT b FROM Sc2Bet b, Sc2Matches m, Sc2AvailableBets ab WHERE b.betId.idsc2AvailableBets = ab.idsc2AvailableBets AND ab.matchId.id = m.id AND b.status < 3 AND m.finished > 0")
+    @NamedQuery(name = "Sc2Bet.findAllMatchEndedNotEvaluated", query = "SELECT s FROM Sc2Bet s, Sc2Matches m, Sc2AvailableBets ab WHERE b.betId.idsc2AvailableBets = ab.idsc2AvailableBets AND ab.matchId.id = m.id AND b.status < 3 AND m.finished > 0")
     })
 public class Sc2Bet implements Serializable {
 
