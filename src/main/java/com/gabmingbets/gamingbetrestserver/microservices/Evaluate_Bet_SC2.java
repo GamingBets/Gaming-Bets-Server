@@ -84,6 +84,8 @@ public class Evaluate_Bet_SC2 {
 				stmt = con.prepareStatement(query);
 				stmt.executeUpdate();
 				counter++;
+                                stmt.close();
+                                con.close();
 			}
 		} catch (SQLException e) {
 

@@ -36,6 +36,7 @@ public class Create_Available_Bets_Lol {
 			}
                         this.con.close();
                         stmt.close();
+                        con.close();
 		System.out.println(i+" rows affected!");
 		System.out.println("Finished!");
                 
