@@ -13,7 +13,7 @@
 	<properties>
 		<endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<skipTests>false</skipTests>
+		<skipTests>true</skipTests>
 		<sonar.host.url>http://193.196.7.25</sonar.host.url>
 		<sonar.projectName>GamingBetsServer</sonar.projectName>
 	</properties>

@@ -79,6 +79,14 @@ public class Sc2BetFacadeREST extends AbstractFacade<Sc2Bet> {
     public List<Sc2Bet> findAll() {
         return super.findAll();
     }
+    
+    @GET
+    @Path("test")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Sc2Bet> findWhatevs() {
+        TypedQuery<Sc2Bet> query = em.createNamedQuery("Sc2Bet.findAllMatchEndedNotEvaluated", Sc2Bet.class);
+        return query.getResultList();
+    }
 
     @GET
     @Path("{from}/{to}")
