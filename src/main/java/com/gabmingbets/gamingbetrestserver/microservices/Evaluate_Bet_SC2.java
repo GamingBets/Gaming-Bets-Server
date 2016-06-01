@@ -18,7 +18,7 @@ public class Evaluate_Bet_SC2 {
     private EntityManager em;
 	public void run() {
 	
-            /*
+            
             int counter = 0;
 
             TypedQuery<Sc2Bet> query = em.createNamedQuery("Sc2Bet.findAllMatchEndedNotEvaluated", Sc2Bet.class);
@@ -50,8 +50,8 @@ public class Evaluate_Bet_SC2 {
 
             }
             System.out.println(""+counter+" rows were evaluated!");
-            */
-            /**/
+            
+            /*
 		String query;
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -88,7 +88,7 @@ public class Evaluate_Bet_SC2 {
 
 		}
 		System.out.println(""+counter+" rows were evaluated!");
-		/**/
+		*/
 	}
 
 
