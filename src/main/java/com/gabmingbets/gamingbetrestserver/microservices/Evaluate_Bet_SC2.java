@@ -28,9 +28,9 @@ public class Evaluate_Bet_SC2 {
             boolean player1_won = false;
 
             for ( int i = 0; i < bets.size(); i++) {
-
+                
                 Sc2Bet bet = bets.get(i);
-
+                System.out.println("Wette: "+bet.getIdsc2Bet());
                 if(bet.getBetId().getMatchId().getResult() < 10) {
                     player1_won = false;
                 }else {
