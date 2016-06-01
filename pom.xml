@@ -16,7 +16,7 @@
 		<skipTests>false</skipTests>
 		<sonar.host.url>http://193.196.7.25</sonar.host.url>
 		<sonar.projectName>GamingBetsServer</sonar.projectName>
-                <sonar.tests>${project.basedir}/src/test</sonar.tests>
+                
 	</properties>
 
 	<dependencies>
