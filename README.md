@@ -7,5 +7,4 @@
 
 http://134.255.218.20:5000/job/GamingBetsServer/badge/icon
 
-
 [![Build Status](http://134.255.218.20:5000/buildStatus/icon?job=GamingBetsServer)](http://134.255.218.20:5000/job/GamingBetsServer/)
