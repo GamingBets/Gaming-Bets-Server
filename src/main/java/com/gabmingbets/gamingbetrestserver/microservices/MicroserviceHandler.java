@@ -1,5 +1,12 @@
 package com.gabmingbets.gamingbetrestserver.microservices;
 
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
+import com.gabmingbets.gamingbetrestserver.domain.Sc2Matches;
+import com.gabmingbets.gamingbetrestserver.domain.service.Sc2MatchesFacadeREST;
+
 public class MicroserviceHandler {
 	
 	public static void evaluateBetsSC2(){
@@ -19,7 +26,7 @@ public class MicroserviceHandler {
 	
 	public static void createAvailableBetsSC2(){
 		Create_Available_Bets_SC2 cab = new Create_Available_Bets_SC2();
-		cab.run();
+		 cab.run();
 	}
 	
 //	public static void createAvailableBetsLoL(){
@@ -29,7 +36,7 @@ public class MicroserviceHandler {
 	
 	public static void createAvailableBetsAll(){
 //		createAvailableBetsLoL();
-		createAvailableBetsSC2();
+		//createAvailableBetsSC2();
 	}
 	
 	public static void adjustScoreSC2(){
