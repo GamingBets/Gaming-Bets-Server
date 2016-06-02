@@ -15,19 +15,18 @@ import javax.persistence.Query;
 public class Create_Available_Bets_SC2 {
 
     @PersistenceContext(unitName = "com.gabmingbets_gamingBetRestServer_war_1.0PU")
-    private EntityManager em;
+    private Sc2MatchesFacadeREST facadeMatches;
 	private Date dateOfLastExecute;
 	private Connection con;
 
 	public Create_Available_Bets_SC2() {
-		dateOfLastExecute = getDateOfLastExecuteFromDB();
-		//this.con = Database.connect();
+		this.con = Database.connect();
 	}
 
 	public void run() {
-		/*
+		
 
-                // Get dateOfLastExecute
+        // Get dateOfLastExecute
 
 		// Query for SC2 Matches with bet_created flag = 0
 		String query = createSelectQuery();
@@ -52,26 +51,32 @@ public class Create_Available_Bets_SC2 {
 		} catch (SQLException e) {
 			//TODO Exception Handling
 			e.printStackTrace();
-		}*/
-                
-            TypedQuery<Sc2Matches> query = em.createNamedQuery("Sc2Matches.findByBetCreated", Sc2Matches.class).setParameter("betCreated", 0);
+		}
+		
+               
+		
+		/*
+            TypedQuery<Sc2Matches> query = facadeMatches.getEntityManagerForMicroservices().createNamedQuery("Sc2Matches.findByBetCreated", Sc2Matches.class).setParameter("betCreated", 0);
             List<Sc2Matches> matches = new ArrayList();
             matches = query.getResultList();
             
+            Query q;
             for(int i = 0; i<matches.size();i++) {
-                Sc2AvailableBets bet = new Sc2AvailableBets();
-                bet.setMatchId(matches.get(i));
-                Sc2AvailableBetsFacadeREST betfacade = new Sc2AvailableBetsFacadeREST();
-                betfacade.create(bet);
-                
-                Query q = em.createQuery("UPDATE Sc2Matches m SET m.betCreated = " + 1 + " WHERE u.id=" + bet.getMatchId().getId()+ "");
-                q.executeUpdate();
+                              
+                //q = facadeMatches.createQuery(createInsertQuery(matches.get(i).getId()));
+                //q.executeUpdate();
+            	
+            	Sc2Matches temp = matches.get(i);
+            	temp.setBetCreated(1);
+            	facadeMatches.edit(temp);
+            	
+            	
             }
+           
             
+            return matches;
             
-            
-            
-
+		 */
 
 	}
 

@@ -5,7 +5,11 @@
  */
 package com.gabmingbets.gamingbetrestserver.domain.service;
 
+import com.gabmingbets.gamingbetrestserver.domain.Sc2Bet;
 import com.gabmingbets.gamingbetrestserver.domain.Sc2Matches;
+import com.gabmingbets.gamingbetrestserver.microservices.MicroserviceHandler;
+
+import java.util.Iterator;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -92,10 +96,74 @@ public class Sc2MatchesFacadeREST extends AbstractFacade<Sc2Matches> {
     public String countREST() {
         return String.valueOf(super.count());
     }
+    
+    
+    
+    @GET
+    @Path("createBets")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String createBets(){
+    	
+       	StringBuilder temp = new StringBuilder("Create Bets!:\n");
+    	temp.append("Before:\n");
+    	
+    	TypedQuery<Sc2Matches> query = getEntityManager().createNamedQuery("Sc2Matches.findByBetCreated", Sc2Matches.class).setParameter("betCreated", 0);
+    	List<Sc2Matches> list = query.getResultList();
+    	
+    	for (Iterator iterator = list.iterator(); iterator.hasNext();) {
+			Sc2Matches sc2Matches = (Sc2Matches) iterator.next();
+			temp.append(sc2Matches.toString() + "\n");
+		}
+    	
+    	MicroserviceHandler.createAvailableBetsSC2();
+    	
+    	temp.append("After:\n");
+    	query = getEntityManager().createNamedQuery("Sc2Matches.findByBetCreated", Sc2Matches.class).setParameter("betCreated", 0);
+    	list = query.getResultList();
+    	
+    	for (Iterator iterator = list.iterator(); iterator.hasNext();) {
+			Sc2Matches sc2Matches = (Sc2Matches) iterator.next();
+			temp.append(sc2Matches.toString() + "\n");
+		}
+    	
+    	return temp.toString();
+    	
+    }
+    
+    @GET
+    @Path("evaluateBets")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String evaluateBets(){
+    	
+       	StringBuilder temp = new StringBuilder("Evaluate Bets!:\n");
+    	temp.append("Before:\n");
+    	
+    	//TypedQuery<Sc2Matches> query = getEntityManager().createNamedQuery("Sc2Matches.findByFinished", Sc2Matches.class).setParameter("finished", 1);
+    	TypedQuery<Sc2Bet> query = getEntityManager().createNamedQuery("Sc2Bet.findAllMatchEndedNotEvaluated", Sc2Bet.class); 
+    	List<Sc2Bet> list = query.getResultList();
+    	
+    	for (Sc2Bet sc2Bet : list) {
+			temp.append(sc2Bet.toString()+"\n");
+		}
+    	
+    	MicroserviceHandler.evaluateBetsSC2();
+    	
+    	temp.append("After:\n");
+    	query = getEntityManager().createNamedQuery("Sc2Bet.findAllMatchEndedNotEvaluated", Sc2Bet.class); 
+    	list = query.getResultList();
+    	
+    	for (Sc2Bet sc2Bet : list) {
+			temp.append(sc2Bet.toString()+"\n");
+		}
+    	
+    	return temp.toString();
+    	
+    }
+  
 
+	
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
-    
 }
