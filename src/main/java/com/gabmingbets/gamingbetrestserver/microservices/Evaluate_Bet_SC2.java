@@ -52,7 +52,7 @@ public class Evaluate_Bet_SC2 {
             }
             System.out.println(""+counter+" rows were evaluated!");
             */
-            /**/
+        
 		String query;
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -84,14 +84,17 @@ public class Evaluate_Bet_SC2 {
 				stmt = con.prepareStatement(query);
 				stmt.executeUpdate();
 				counter++;
-                                stmt.close();
-                                con.close();
+                                
 			}
+			stmt.close();
+	        con.close();
 		} catch (SQLException e) {
 
 		}
+		
+		
 		System.out.println(""+counter+" rows were evaluated!");
-		/**/
+		
 	}
 
 

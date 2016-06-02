@@ -15,7 +15,6 @@ import org.junit.Test;
 
 public class Test_For_Bet_Evaluation_Lol {
 
-	private Evaluate_Bet_Lol test_object;
 	private static Connection con;
 
 	@BeforeClass
@@ -26,7 +25,6 @@ public class Test_For_Bet_Evaluation_Lol {
 	@Before
 	public void init() {
 
-		test_object = new Evaluate_Bet_Lol();
 		String query;
 		PreparedStatement stmt;
 
@@ -151,7 +149,7 @@ public class Test_For_Bet_Evaluation_Lol {
 			e.printStackTrace();
 		}
 
-		test_object.run();
+		MicroserviceHandler.evaluateBetsLol();
 
 		for (int i = 0; i < bets.size(); i++) {
 			try {
@@ -172,7 +170,8 @@ public class Test_For_Bet_Evaluation_Lol {
 
 	@Test
 	public void checkIfEvaluationIsCorrect() {
-		test_object.run();
+		
+		MicroserviceHandler.evaluateBetsLol();
 		try {
 			String query = "SELECT b.status, m.result, b.betted_result, b.bet_id, b.idlol_bet, m.idmatches from gamingbets.lol_bet b, lol_available_bets ab, lol_matches m WHERE b.bet_id = ab.idlol_available_bets and ab.match_id = m.idmatches and b.user_id = 19;";
 			PreparedStatement stmt = con.prepareStatement(query);

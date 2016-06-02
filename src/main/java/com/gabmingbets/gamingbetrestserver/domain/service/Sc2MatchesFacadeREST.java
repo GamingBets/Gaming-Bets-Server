@@ -5,6 +5,7 @@
  */
 package com.gabmingbets.gamingbetrestserver.domain.service;
 
+import com.gabmingbets.gamingbetrestserver.domain.Sc2Bet;
 import com.gabmingbets.gamingbetrestserver.domain.Sc2Matches;
 import com.gabmingbets.gamingbetrestserver.microservices.MicroserviceHandler;
 
@@ -123,6 +124,36 @@ public class Sc2MatchesFacadeREST extends AbstractFacade<Sc2Matches> {
     	for (Iterator iterator = list.iterator(); iterator.hasNext();) {
 			Sc2Matches sc2Matches = (Sc2Matches) iterator.next();
 			temp.append(sc2Matches.toString() + "\n");
+		}
+    	
+    	return temp.toString();
+    	
+    }
+    
+    @GET
+    @Path("evaluateBets")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String evaluateBets(){
+    	
+       	StringBuilder temp = new StringBuilder("Evaluate Bets!:\n");
+    	temp.append("Before:\n");
+    	
+    	//TypedQuery<Sc2Matches> query = getEntityManager().createNamedQuery("Sc2Matches.findByFinished", Sc2Matches.class).setParameter("finished", 1);
+    	TypedQuery<Sc2Bet> query = getEntityManager().createNamedQuery("Sc2Bet.findAllMatchEndedNotEvaluated", Sc2Bet.class); 
+    	List<Sc2Bet> list = query.getResultList();
+    	
+    	for (Sc2Bet sc2Bet : list) {
+			temp.append(sc2Bet.toString()+"\n");
+		}
+    	
+    	MicroserviceHandler.evaluateBetsSC2();
+    	
+    	temp.append("After:\n");
+    	query = getEntityManager().createNamedQuery("Sc2Bet.findAllMatchEndedNotEvaluated", Sc2Bet.class); 
+    	list = query.getResultList();
+    	
+    	for (Sc2Bet sc2Bet : list) {
+			temp.append(sc2Bet.toString()+"\n");
 		}
     	
     	return temp.toString();

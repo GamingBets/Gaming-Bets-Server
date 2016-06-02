@@ -16,7 +16,6 @@ import static org.junit.Assert.*;
 
 public class Test_For_Adjust_Score_SC2 {
 	
-	private AdjustScoreSC2 test_object;
 	private static Connection con;
 	
 	@BeforeClass
@@ -27,7 +26,6 @@ public class Test_For_Adjust_Score_SC2 {
 	@Before
 	public void init() {
 
-		test_object = new AdjustScoreSC2();
 		String query;
 		PreparedStatement stmt;
 
@@ -161,7 +159,7 @@ public class Test_For_Adjust_Score_SC2 {
 			e.printStackTrace();
 		}
 
-		test_object.run();
+		MicroserviceHandler.adjustScoreSC2();
 
 		for (int i = 0; i < bets.size(); i++) {
 			try {
@@ -197,7 +195,7 @@ public class Test_For_Adjust_Score_SC2 {
 
 		}
 		
-		test_object.run();
+		MicroserviceHandler.adjustScoreSC2();
 		
 		try {
 			String query = "SELECT * FROM gamingbets.user u WHERE iD = 19;";
