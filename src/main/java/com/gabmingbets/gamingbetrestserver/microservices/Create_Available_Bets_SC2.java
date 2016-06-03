@@ -99,7 +99,7 @@ public class Create_Available_Bets_SC2 {
 	}
 
 	public String createUpdateQuery(int id) {
-		return "UPDATE `GamingBets`.`sc2_matches` SET `bet_created`='1' WHERE `id`='"+id+"';";
+		return "UPDATE `gamingbets`.`sc2_matches` SET `bet_created`='1' WHERE `id`='"+id+"';";
 	}
 
 }

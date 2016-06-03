@@ -66,7 +66,7 @@ public class Create_Available_Bets_Lol {
 	}
 
 	public String createUpdateQuery(int id) {
-		return "UPDATE `GamingBets`.`lol_matches` SET `bet_created`='1' WHERE `idmatches`='"+id+"';";
+		return "UPDATE `gamingbets`.`lol_matches` SET `bet_created`='1' WHERE `idmatches`='"+id+"';";
 	}
 
 }
