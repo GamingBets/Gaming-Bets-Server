@@ -144,7 +144,7 @@ public class Test_For_Bet_Creation_Microservice_Lol {
 
 	@Test
 	public void CreateUpdateQueryForBetsTable() {
-		assertEquals("UPDATE `GamingBets`.`lol_matches` SET `bet_created`='1' WHERE `idmatches`='1';",
+		assertEquals("UPDATE `gamingbets`.`lol_matches` SET `bet_created`='1' WHERE `idmatches`='1';",
 				cb.createUpdateQuery(1));
 
 	}

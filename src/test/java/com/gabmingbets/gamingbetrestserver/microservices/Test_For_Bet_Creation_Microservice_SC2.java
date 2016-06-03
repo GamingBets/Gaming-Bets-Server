@@ -131,7 +131,7 @@ public class Test_For_Bet_Creation_Microservice_SC2 {
 
 	@Test
 	public void QueryForMatchesWithoutCreatedFlag() {
-		assertEquals("SELECT * FROM GamingBets.sc2_matches WHERE bet_created = 0;", cb.createSelectQuery());
+		assertEquals("SELECT * FROM gamingbets.sc2_matches WHERE bet_created = 0;", cb.createSelectQuery());
 	}
 
 	@Test
@@ -143,7 +143,7 @@ public class Test_For_Bet_Creation_Microservice_SC2 {
 
 	@Test
 	public void CreateUpdateQueryForBetsTable() {
-		assertEquals("UPDATE `GamingBets`.`sc2_matches` SET `bet_created`='1' WHERE `id`='1';",
+		assertEquals("UPDATE `gamingbets`.`sc2_matches` SET `bet_created`='1' WHERE `id`='1';",
 				cb.createUpdateQuery(1));
 
 	}
