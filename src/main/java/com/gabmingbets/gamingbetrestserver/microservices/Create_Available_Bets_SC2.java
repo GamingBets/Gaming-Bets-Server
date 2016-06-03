@@ -89,7 +89,7 @@ public class Create_Available_Bets_SC2 {
 	}
 
 	public String createSelectQuery() {
-            return "SELECT * FROM GamingBets.sc2_matches WHERE bet_created = 0;";
+            return "SELECT * FROM gamingbets.sc2_matches WHERE bet_created = 0;";
                               
 	}
 
