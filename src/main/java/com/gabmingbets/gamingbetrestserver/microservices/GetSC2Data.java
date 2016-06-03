@@ -184,7 +184,7 @@ public class GetSC2Data {
 		// Send an HTTP POST Request to Liquipedia
 		String httpResponse;
 		httpResponse = excutePost(updateURL(url));
-
+		
 		// Extracts just the results
 		JSONObject json_matches = parseResponseToResultsAsJSONObject(httpResponse);
 
@@ -204,7 +204,7 @@ public class GetSC2Data {
 		return list;
 	}
 
-	private static ArrayList<SC2Match> parseJSONMachtesToListOfSC2Machtes(JSONObject json_matches) {
+	public static ArrayList<SC2Match> parseJSONMachtesToListOfSC2Machtes(JSONObject json_matches) {
 
 		String maps[] = JSONObject.getNames(json_matches);
 		ArrayList<SC2Match> list = new ArrayList<SC2Match>();
@@ -234,7 +234,7 @@ public class GetSC2Data {
 
 	}
 
-	private static SC2Match parseJSONObjectToSC2Match(JSONObject each_object) {
+	public static SC2Match parseJSONObjectToSC2Match(JSONObject each_object) {
 
 		SC2Match match = new SC2Match();
 

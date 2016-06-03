@@ -12,6 +12,8 @@ public class ProductionTestParseSC2Data {
 		String player2 = "Harstem";
 		String tournament = "http://wiki.teamliquid.net/starcraft2/2016_WCS_Spring_Circuit_Championship";
 		
+		System.out.println(GetSC2Data.updateURL(tournament));
+		
 		ArrayList<SC2Match> list = GetSC2Data.getMatchesFromTournament(tournament);
 		
 		System.out.println("\n\n--------------------------------\nSC2Match Objects:\n\n");
