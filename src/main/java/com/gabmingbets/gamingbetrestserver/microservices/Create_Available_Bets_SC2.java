@@ -29,7 +29,7 @@ public class Create_Available_Bets_SC2 {
 
 		// Query for SC2 Matches with bet_created flag = 0
 		String query = createSelectQuery();
-		PreparedStatement stmt;
+		PreparedStatement stmt = null;
 		try {
 			stmt = con.prepareStatement(query);
 			ResultSet rs = stmt.executeQuery();
@@ -45,12 +45,18 @@ public class Create_Available_Bets_SC2 {
 				i++;
 
 			}
-			this.con.close();
-			stmt.close();
+			
 			System.out.println(i + " available bets were created!");
 		} catch (SQLException e) {
 			// TODO Exception Handling
 			e.printStackTrace();
+		} finally {
+			try {
+				this.con.close();
+				stmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 		/*

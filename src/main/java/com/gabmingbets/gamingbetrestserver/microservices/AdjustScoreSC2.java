@@ -51,7 +51,7 @@ public void run() {
 	
 	
 		String query;
-		PreparedStatement stmt;
+		PreparedStatement stmt = null;
 		ResultSet rs;
 		Connection con = Database.connect();
 		int counter = 0;
@@ -92,11 +92,18 @@ public void run() {
 
 				
 			}
-			stmt.close();
-			con.close();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 
+		} finally {
+			try {
+				stmt.close();
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
 		}
 		System.out.println("" + counter + " scores were updated!");
 		

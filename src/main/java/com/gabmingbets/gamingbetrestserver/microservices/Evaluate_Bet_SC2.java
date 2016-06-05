@@ -54,7 +54,7 @@ public class Evaluate_Bet_SC2 {
             */
         
 		String query;
-		PreparedStatement stmt;
+		PreparedStatement stmt = null;
 		ResultSet rs;
 		Connection con = Database.connect();
 		int counter = 0;
@@ -86,10 +86,19 @@ public class Evaluate_Bet_SC2 {
 				counter++;
                                 
 			}
-			stmt.close();
-	        con.close();
+			
 		} catch (SQLException e) {
+			e.printStackTrace();
 
+		}
+		
+		finally {
+			try {
+				stmt.close();
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		
