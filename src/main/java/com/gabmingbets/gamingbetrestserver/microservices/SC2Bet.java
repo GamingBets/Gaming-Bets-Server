@@ -6,9 +6,9 @@ public class SC2Bet {
 	private int user_id;
 	private int betted_result;
 
-	public SC2Bet(int match_id, int user_id, int betted_result) {
+	public SC2Bet(int available_bet, int user_id, int betted_result) {
 		super();
-		this.available_bet_id = match_id;
+		this.available_bet_id = available_bet;
 		this.user_id = user_id;
 		this.betted_result = betted_result;
 	}

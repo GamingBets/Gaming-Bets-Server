@@ -220,7 +220,7 @@ public class GetSC2Data {
 		return list;
 	}
 
-	private static JSONObject filterMatches(JSONObject json_matches) {
+	public static JSONObject filterMatches(JSONObject json_matches) {
 
 		String maps[] = JSONObject.getNames(json_matches);
 
@@ -269,7 +269,7 @@ public class GetSC2Data {
 		return match;
 	}
 
-	private static JSONObject parseResponseToResultsAsJSONObject(String httpResponse) {
+	public static JSONObject parseResponseToResultsAsJSONObject(String httpResponse) {
 
 		JSONObject object = new JSONObject(httpResponse);
 		object = object.getJSONObject("query");
