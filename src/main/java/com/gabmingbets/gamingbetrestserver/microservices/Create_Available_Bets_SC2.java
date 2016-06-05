@@ -14,8 +14,8 @@ import javax.persistence.Query;
 
 public class Create_Available_Bets_SC2 {
 
-    @PersistenceContext(unitName = "com.gabmingbets_gamingBetRestServer_war_1.0PU")
-    private Sc2MatchesFacadeREST facadeMatches;
+	@PersistenceContext(unitName = "com.gabmingbets_gamingBetRestServer_war_1.0PU")
+	private Sc2MatchesFacadeREST facadeMatches;
 	private Date dateOfLastExecute;
 	private Connection con;
 
@@ -24,9 +24,8 @@ public class Create_Available_Bets_SC2 {
 	}
 
 	public void run() {
-		
 
-        // Get dateOfLastExecute
+		// Get dateOfLastExecute
 
 		// Query for SC2 Matches with bet_created flag = 0
 		String query = createSelectQuery();
@@ -36,46 +35,46 @@ public class Create_Available_Bets_SC2 {
 			ResultSet rs = stmt.executeQuery();
 			int i = 0;
 			while (rs.next()) {
-				
+
 				stmt = con.prepareStatement(createInsertQuery(rs.getInt("id")));
 				stmt.executeUpdate();
-				
-				
+
 				stmt = con.prepareStatement(createUpdateQuery(rs.getInt("id")));
 				stmt.executeUpdate();
-				
+
 				i++;
-				
+
 			}
-		System.out.println(i+" available bets were created!");
+			this.con.close();
+			stmt.close();
+			System.out.println(i + " available bets were created!");
 		} catch (SQLException e) {
-			//TODO Exception Handling
+			// TODO Exception Handling
 			e.printStackTrace();
 		}
-		
-               
-		
+
 		/*
-            TypedQuery<Sc2Matches> query = facadeMatches.getEntityManagerForMicroservices().createNamedQuery("Sc2Matches.findByBetCreated", Sc2Matches.class).setParameter("betCreated", 0);
-            List<Sc2Matches> matches = new ArrayList();
-            matches = query.getResultList();
-            
-            Query q;
-            for(int i = 0; i<matches.size();i++) {
-                              
-                //q = facadeMatches.createQuery(createInsertQuery(matches.get(i).getId()));
-                //q.executeUpdate();
-            	
-            	Sc2Matches temp = matches.get(i);
-            	temp.setBetCreated(1);
-            	facadeMatches.edit(temp);
-            	
-            	
-            }
-           
-            
-            return matches;
-            
+		 * TypedQuery<Sc2Matches> query =
+		 * facadeMatches.getEntityManagerForMicroservices().createNamedQuery(
+		 * "Sc2Matches.findByBetCreated",
+		 * Sc2Matches.class).setParameter("betCreated", 0); List<Sc2Matches>
+		 * matches = new ArrayList(); matches = query.getResultList();
+		 * 
+		 * Query q; for(int i = 0; i<matches.size();i++) {
+		 * 
+		 * //q =
+		 * facadeMatches.createQuery(createInsertQuery(matches.get(i).getId()));
+		 * //q.executeUpdate();
+		 * 
+		 * Sc2Matches temp = matches.get(i); temp.setBetCreated(1);
+		 * facadeMatches.edit(temp);
+		 * 
+		 * 
+		 * }
+		 * 
+		 * 
+		 * return matches;
+		 * 
 		 */
 
 	}
@@ -89,17 +88,17 @@ public class Create_Available_Bets_SC2 {
 	}
 
 	public String createSelectQuery() {
-            return "SELECT * FROM gamingbets.sc2_matches WHERE bet_created = 0;";
-                              
+		return "SELECT * FROM gamingbets.sc2_matches WHERE bet_created = 0;";
+
 	}
 
 	public String createInsertQuery(int id) {
-		return "INSERT INTO `gamingbets`.`sc2_available_bets` (`match_id`) VALUES ('"+id+"');";
+		return "INSERT INTO `gamingbets`.`sc2_available_bets` (`match_id`) VALUES ('" + id + "');";
 
 	}
 
 	public String createUpdateQuery(int id) {
-		return "UPDATE `gamingbets`.`sc2_matches` SET `bet_created`='1' WHERE `id`='"+id+"';";
+		return "UPDATE `gamingbets`.`sc2_matches` SET `bet_created`='1' WHERE `id`='" + id + "';";
 	}
 
 }

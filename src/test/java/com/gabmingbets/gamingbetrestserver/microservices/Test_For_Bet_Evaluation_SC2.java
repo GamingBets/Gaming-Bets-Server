@@ -15,6 +15,16 @@ public class Test_For_Bet_Evaluation_SC2 {
 	public static void firstInit() {
 		con = Database.connect();
 	}
+	
+	@AfterClass
+	public static void finalCleanUp(){
+		try {
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	@Before
 	public void init() {

@@ -23,28 +23,25 @@ public class Create_Available_Bets_Lol {
 			ResultSet rs = stmt.executeQuery();
 			int i = 0;
 			while (rs.next()) {
-				
+
 				stmt = con.prepareStatement(createInsertQuery(rs.getInt("idmatches")));
 				stmt.executeUpdate();
-				
-				
+
 				stmt = con.prepareStatement(createUpdateQuery(rs.getInt("idmatches")));
 				stmt.executeUpdate();
-				
+
 				i++;
-				 
+
 			}
-                        this.con.close();
-                        stmt.close();
-                        con.close();
-		System.out.println(i+" rows affected!");
-		System.out.println("Finished!");
-                
+			this.con.close();
+			stmt.close();
+			System.out.println(i + " rows affected!");
+			System.out.println("Finished!");
+
 		} catch (SQLException e) {
-			//TODO Exception Handling
+			// TODO Exception Handling
 			e.printStackTrace();
 		}
-               
 
 	}
 
@@ -61,12 +58,12 @@ public class Create_Available_Bets_Lol {
 	}
 
 	public String createInsertQuery(int id) {
-		return "INSERT INTO `gamingbets`.`lol_available_bets` (`match_id`) VALUES ('"+id+"');";
+		return "INSERT INTO `gamingbets`.`lol_available_bets` (`match_id`) VALUES ('" + id + "');";
 
 	}
 
 	public String createUpdateQuery(int id) {
-		return "UPDATE `gamingbets`.`lol_matches` SET `bet_created`='1' WHERE `idmatches`='"+id+"';";
+		return "UPDATE `gamingbets`.`lol_matches` SET `bet_created`='1' WHERE `idmatches`='" + id + "';";
 	}
 
 }

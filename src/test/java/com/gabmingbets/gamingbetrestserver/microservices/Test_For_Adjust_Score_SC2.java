@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
@@ -21,6 +22,16 @@ public class Test_For_Adjust_Score_SC2 {
 	@BeforeClass
 	public static void firstInit() {
 		con = Database.connect();
+	}
+	
+	@AfterClass
+	public static void finalCleanUp(){
+		try {
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Before
