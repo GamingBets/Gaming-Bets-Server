@@ -159,6 +159,20 @@ public class Sc2MatchesFacadeREST extends AbstractFacade<Sc2Matches> {
     	return temp.toString();
     	
     }
+    
+    @GET
+    @Path("update")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String executeMicroservices(){
+    	
+
+    	MicroserviceHandler.createAvailableBetsSC2();
+    	MicroserviceHandler.evaluateBetsSC2();
+    	MicroserviceHandler.adjustScoreSC2();
+    	return "Done";
+    	
+    }
+    
   
 
 	

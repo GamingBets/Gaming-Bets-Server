@@ -58,7 +58,7 @@ public void run() {
 		// Check if there are bets which corresponding matches ended but the
 		// bets weren�t evaluated!
 		try {
-			query = "SELECT b.user_id, u.score, b.idsc2_bet, b.status, b.input FROM gamingbets.sc2_bet b, user u WHERE processed = 0 and b.user_id = u.iD;";
+			query = "SELECT u.id, b.idsc2_bet, b.status, b.input, u.score FROM gamingbets.sc2_bet b, user u, sc2_available_bets ab, sc2_matches m WHERE m.id = ab.match_id and b.bet_id = ab.idsc2_available_bets and b.processed = 0 and m.finished = 1 and b.user_id = u.iD;";
 			stmt = con.prepareStatement(query);
 			rs = stmt.executeQuery();
 
@@ -74,13 +74,13 @@ public void run() {
 						score_adjust = score_adjust * 3;
 					}
 
-					query = "SELECT * FROM gamingbets.user u WHERE u.iD = " + rs.getInt("user_id") + ";";
+					query = "SELECT * FROM gamingbets.user u WHERE u.iD = " + rs.getInt("id") + ";";
 					stmt = con.prepareStatement(query);
 					ResultSet temp = stmt.executeQuery();
 					temp.next();
 
 					query = "UPDATE `gamingbets`.`user` SET `score`='" + (temp.getInt("score") + score_adjust)
-							+ "' WHERE `iD`='" + rs.getInt("user_id") + "';";
+							+ "' WHERE `iD`='" + rs.getInt("id") + "';";
 					stmt = con.prepareStatement(query);
 					stmt.executeUpdate();
 				}
