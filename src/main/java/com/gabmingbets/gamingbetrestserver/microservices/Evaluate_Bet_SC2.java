@@ -94,8 +94,8 @@ public class Evaluate_Bet_SC2 {
 		
 		finally {
 			try {
-				stmt.close();
-				con.close();
+				if(stmt!=null)stmt.close();
+				if(con!=null)con.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

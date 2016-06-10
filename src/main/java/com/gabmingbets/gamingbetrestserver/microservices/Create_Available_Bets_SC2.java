@@ -45,15 +45,16 @@ public class Create_Available_Bets_SC2 {
 				i++;
 
 			}
-			
+			stmt.close();
+                        con.close();
 			System.out.println(i + " available bets were created!");
 		} catch (SQLException e) {
 			// TODO Exception Handling
 			e.printStackTrace();
 		} finally {
 			try {
-				this.con.close();
-				stmt.close();
+				if(con!=null)this.con.close();
+				if(stmt!=null)stmt.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
