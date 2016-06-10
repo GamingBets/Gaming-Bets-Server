@@ -89,8 +89,7 @@ public void run() {
 				stmt = con.prepareStatement(query);
 				stmt.executeUpdate();
 				counter++;
-                                stmt.close();
-                                con.close();
+
 				
 			}
 			
@@ -99,8 +98,8 @@ public void run() {
 
 		} finally {
 			try {
-				if(stmt!=null)stmt.close();
-				if(con!=null)con.close();
+				stmt.close();
+				con.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
